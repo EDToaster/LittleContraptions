@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " $ ",
+    "_#_",
+    "$$$"
+  ],
+  "key": {
+    "_": {
+      "item": "minecraft:piston"
+    },
+    "#": {
+      "item": "littlelogistics:vessel_charger"
+    },
+    "$": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "littlelogistics:energy_tug"
+  }
+}

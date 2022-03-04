@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "littlelogistics:item/tug_route"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "littlelogistics:routestate": 1.0
+      },
+      "model": "littlelogistics:item/tug_route_empty"
+    }
+  ]
+}

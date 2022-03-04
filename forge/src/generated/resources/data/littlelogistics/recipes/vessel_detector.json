@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "_#_",
+    "_$_",
+    "___"
+  ],
+  "key": {
+    "#": {
+      "item": "littlelogistics:spring"
+    },
+    "_": {
+      "tag": "forge:stone"
+    },
+    "$": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "result": {
+    "item": "littlelogistics:vessel_detector",
+    "count": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "littlelogistics:block/guide_rail_tug",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "littlelogistics:block/guide_rail_tug",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "littlelogistics:block/guide_rail_tug",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "littlelogistics:block/guide_rail_tug"
+    }
+  }
+}

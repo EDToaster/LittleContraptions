@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#$#",
+    "___",
+    "___"
+  ],
+  "key": {
+    "#": {
+      "item": "littlelogistics:spring"
+    },
+    "_": {
+      "tag": "forge:stone"
+    },
+    "$": {
+      "item": "minecraft:powered_rail"
+    }
+  },
+  "result": {
+    "item": "littlelogistics:guide_rail_tug",
+    "count": 8
+  }
+}

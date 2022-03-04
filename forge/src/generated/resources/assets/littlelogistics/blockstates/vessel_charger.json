@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "littlelogistics:block/vessel_charger"
+    },
+    "facing=south": {
+      "model": "littlelogistics:block/vessel_charger",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "littlelogistics:block/vessel_charger",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "littlelogistics:block/vessel_charger",
+      "y": 90
+    }
+  }
+}

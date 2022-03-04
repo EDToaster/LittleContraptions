@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "littlelogistics:block/guide_rail_side",
+    "front": "littlelogistics:block/guide_rail_front",
+    "top": "littlelogistics:block/guide_rail_top"
+  }
+}

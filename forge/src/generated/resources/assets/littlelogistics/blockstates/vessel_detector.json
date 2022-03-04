@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "littlelogistics:block/vessel_detector",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up,powered=false": {
+      "model": "littlelogistics:block/vessel_detector",
+      "x": 270,
+      "y": 270
+    },
+    "facing=north,powered=false": {
+      "model": "littlelogistics:block/vessel_detector"
+    },
+    "facing=south,powered=false": {
+      "model": "littlelogistics:block/vessel_detector",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "littlelogistics:block/vessel_detector",
+      "y": 270
+    },
+    "facing=east,powered=false": {
+      "model": "littlelogistics:block/vessel_detector",
+      "y": 90
+    },
+    "facing=down,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered",
+      "x": 270,
+      "y": 270
+    },
+    "facing=north,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered"
+    },
+    "facing=south,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered",
+      "y": 180
+    },
+    "facing=west,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "littlelogistics:block/vessel_detector_powered",
+      "y": 90
+    }
+  }
+}

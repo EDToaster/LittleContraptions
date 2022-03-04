@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "___",
+    "#_#",
+    "$$$"
+  ],
+  "key": {
+    "#": {
+      "item": "littlelogistics:spring"
+    },
+    "_": {
+      "tag": "forge:stone"
+    },
+    "$": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "littlelogistics:tug_dock",
+    "count": 2
+  }
+}
