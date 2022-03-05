@@ -40,6 +40,10 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
+    modApi "dev.murad.littlelogistics:littlelogistics:mc1.18.1-v1.1.0"
+    modApi "com.jozufozu.flywheel:Flywheel-Forge:1.18-0.5.0.34"
+    modApi "com.simibubi.create:Create:mc1.18.1_v0.4b+45"
 }
 
 processResources {

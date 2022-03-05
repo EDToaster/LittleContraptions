@@ -11,7 +11,7 @@ loaderVersion="${forge_version_range}" #mandatory This is typically bumped every
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
 license="${mod_license}"
 # A URL to refer people to when problems occur with this mod
-issueTrackerURL="https://github.com/MuradAkh/LittleLogistics/issues" #optional
+issueTrackerURL="https://github.com/EDToaster/LittleContraptions/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -34,7 +34,7 @@ authors="${mod_author}" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''${mod_description}'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.shipping]] #optional
+[[dependencies.littlecontraptions]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -46,7 +46,7 @@ description='''${mod_description}'''
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.shipping]]
+[[dependencies.littlecontraptions]]
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
@@ -54,7 +54,7 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.shipping]]
+[[dependencies.littlecontraptions]]
     modId="patchouli"
     mandatory=false
     versionRange="${patchouli_version_range}"
