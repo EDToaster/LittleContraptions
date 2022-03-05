@@ -85,14 +85,14 @@ publishing {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
 
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
-
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
+//
+//            credentials {
+//                username = System.getenv("GITHUB_ACTOR")
+//                password = System.getenv("GITHUB_TOKEN")
+//            }
+//        }
     }
 }

@@ -115,13 +115,23 @@ publishing {
         }
 
         maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
+            name = "edtoaster"
+            url = uri("https://maven.edtoaster.ca/")
 
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+                username = System.getenv("EDTOASTER_MAVEN_USER")
+                password = System.getenv("EDTOASTER_MAVEN_PASS")
             }
         }
+
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
+//
+//            credentials {
+//                username = System.getenv("GITHUB_ACTOR")
+//                password = System.getenv("GITHUB_TOKEN")
+//            }
+//        }
     }
 }

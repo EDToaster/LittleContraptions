@@ -11,9 +11,9 @@ public class LLModFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        LLClientConfig.setup(new File(FabricLoader.getInstance().getConfigDir().toFile(), "littlelogistics-client.json"));
-        ClientLifecycleEvents.CLIENT_STOPPING.register(instance -> LLClientConfig.save());
+//        LLClientConfig.setup(new File(FabricLoader.getInstance().getConfigDir().toFile(), "littlelogistics-client.json"));
+//        ClientLifecycleEvents.CLIENT_STOPPING.register(instance -> LLClientConfig.save());
 //        new ClientConfigCommand<FabricClientCommandSource>(LLClientConfigImpl.INSTANCE).register(ClientCommandManager.DISPATCHER, p -> true);
-        Storage
+//        Storage
     }
 }
