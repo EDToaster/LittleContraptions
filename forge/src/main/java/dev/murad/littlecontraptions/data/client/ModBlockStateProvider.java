@@ -1,10 +1,14 @@
 package dev.murad.littlecontraptions.data.client;
 
+import com.simibubi.create.Create;
 import dev.murad.littlecontraptions.LCMod;
+import dev.murad.littlecontraptions.setup.LCBlocks;
+import dev.murad.shipping.block.energy.VesselChargerBlock;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -31,6 +35,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-
+        getVariantBuilder(LCBlocks.BARGE_ASSEMBLER.get()).forAllStates(state ->
+                ConfiguredModel.builder()
+                        .modelFile(models().withExistingParent(
+                            "barge_assembler",
+                            new ResourceLocation(Create.ID, "block/cart_assembler/block")))
+                        .rotationY((int) state.getValue(VesselChargerBlock.FACING).getOpposite().toYRot())
+                        .build()
+        );
     }
 }

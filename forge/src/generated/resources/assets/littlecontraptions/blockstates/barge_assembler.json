@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,powered=false,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler"
+    },
+    "facing=south,powered=false,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 180
+    },
+    "facing=west,powered=false,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 270
+    },
+    "facing=east,powered=false,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 90
+    },
+    "facing=north,powered=true,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler"
+    },
+    "facing=south,powered=true,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 180
+    },
+    "facing=west,powered=true,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 270
+    },
+    "facing=east,powered=true,shape=north_south": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 90
+    },
+    "facing=north,powered=false,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler"
+    },
+    "facing=south,powered=false,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 180
+    },
+    "facing=west,powered=false,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 270
+    },
+    "facing=east,powered=false,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 90
+    },
+    "facing=north,powered=true,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler"
+    },
+    "facing=south,powered=true,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 180
+    },
+    "facing=west,powered=true,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 270
+    },
+    "facing=east,powered=true,shape=east_west": {
+      "model": "littlecontraptions:block/barge_assembler",
+      "y": 90
+    }
+  }
+}

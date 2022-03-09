@@ -3,9 +3,11 @@ package dev.murad.littlecontraptions.block;
 
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
 import dev.murad.littlecontraptions.setup.LCBlockEntityTypes;
+import dev.murad.shipping.entity.custom.VesselEntity;
 import dev.murad.shipping.util.TickerUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -16,6 +18,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 public class BargeAssemblerBlock extends Block implements EntityBlock {
@@ -87,4 +93,11 @@ public class BargeAssemblerBlock extends Block implements EntityBlock {
     public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @javax.annotation.Nullable Direction side) {
         return true;
     }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return context instanceof EntityCollisionContext c && c.getEntity() instanceof VesselEntity ? Shapes.empty() : state.getShape(world, pos);
+    }
+
+
 }

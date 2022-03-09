@@ -1,8 +1,0 @@
-{
-  "parent": "littlelogistics:block/orientable_with_back",
-  "textures": {
-    "side": "littlelogistics:block/vessel_detector_side",
-    "front": "littlelogistics:block/vessel_detector_front",
-    "back": "littlelogistics:block/vessel_detector_back"
-  }
-}

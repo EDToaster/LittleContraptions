@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "side": "littlelogistics:block/barge_dock",
-    "front": "littlelogistics:block/barge_dock_front_extract",
-    "top": "littlelogistics:block/barge_dock_top"
-  }
-}
