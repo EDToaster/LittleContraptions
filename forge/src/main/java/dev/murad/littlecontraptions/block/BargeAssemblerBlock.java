@@ -66,7 +66,7 @@ public class BargeAssemblerBlock extends Block implements EntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context){
         return this.defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(FACING, context.getHorizontalDirection())
                 .setValue(RAIL_SHAPE, RailShape.NORTH_SOUTH)
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }

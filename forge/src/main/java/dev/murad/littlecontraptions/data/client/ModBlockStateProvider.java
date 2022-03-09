@@ -2,6 +2,7 @@ package dev.murad.littlecontraptions.data.client;
 
 import com.simibubi.create.Create;
 import dev.murad.littlecontraptions.LCMod;
+import dev.murad.littlecontraptions.block.BargeAssemblerBlock;
 import dev.murad.littlecontraptions.setup.LCBlocks;
 import dev.murad.shipping.block.energy.VesselChargerBlock;
 import net.minecraft.core.Direction;
@@ -35,13 +36,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        getVariantBuilder(LCBlocks.BARGE_ASSEMBLER.get()).forAllStates(state ->
-                ConfiguredModel.builder()
-                        .modelFile(models().withExistingParent(
-                            "barge_assembler",
-                            new ResourceLocation(Create.ID, "block/cart_assembler/block")))
-                        .rotationY((int) state.getValue(VesselChargerBlock.FACING).getOpposite().toYRot())
-                        .build()
-        );
+        getVariantBuilder(LCBlocks.BARGE_ASSEMBLER.get()).forAllStates(state -> {
+            String suffix = state.getValue(BargeAssemblerBlock.POWERED) ? "_on" : "_off";
+            return ConfiguredModel.builder()
+                    .modelFile(models().withExistingParent(
+                            "barge_assembler" + suffix,
+                            new ResourceLocation(Create.ID, "block/cart_assembler/block"))
+                            .texture("4", modLoc("block/barge_assembler_top"))
+                            .texture("6", modLoc("block/barge_assembler_side" + suffix))
+                            .texture("rail", modLoc("block/blank"))
+                            .texture("particle", modLoc("block/barge_assembler_side"))
+                            .texture("translation_chassis_side", modLoc("block/barge_assembler_side")))
+                    .rotationY((int) state.getValue(VesselChargerBlock.FACING).getOpposite().toYRot())
+                    .build();
+        });
     }
 }

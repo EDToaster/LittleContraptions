@@ -43,8 +43,6 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
                 new AABB(getBlockPos()).deflate(0.3f),
                 (e) -> true);
 
-        System.out.println(barges.size());
-
         if (barges.size() > 0)
             tryAssemble(barges.get(0));
     }
