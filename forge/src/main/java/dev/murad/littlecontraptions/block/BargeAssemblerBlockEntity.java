@@ -5,11 +5,9 @@ import com.simibubi.create.content.contraptions.components.structureMovement.Ori
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerTileEntity;
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.MountedContraption;
+import dev.murad.littlecontraptions.entity.ContraptionBargeEntity;
 import dev.murad.littlecontraptions.setup.LCBlockEntityTypes;
 import dev.murad.littlecontraptions.setup.LCBlocks;
-import dev.murad.shipping.entity.custom.barge.SeaterBargeEntity;
-import dev.murad.shipping.setup.ModBlocks;
-import dev.murad.shipping.setup.ModTileEntitiesTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -39,7 +37,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
             return;
         }
 
-        List<SeaterBargeEntity> barges = level.getEntities(EntityTypeTest.forClass(SeaterBargeEntity.class),
+        List<ContraptionBargeEntity> barges = level.getEntities(EntityTypeTest.forClass(ContraptionBargeEntity.class),
                 new AABB(getBlockPos()).deflate(0.3f),
                 (e) -> true);
 
@@ -48,7 +46,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
     }
 
 
-    public void tryAssemble(SeaterBargeEntity barge) {
+    public void tryAssemble(ContraptionBargeEntity barge) {
         if (barge == null)
             return;
 
@@ -99,7 +97,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
 //        }
     }
 
-    protected void assemble(Level world, BlockPos pos, SeaterBargeEntity barge) {
+    protected void assemble(Level world, BlockPos pos, ContraptionBargeEntity barge) {
         if (!barge.getPassengers()
                 .isEmpty())
             return;
@@ -132,7 +130,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
         entity.startRiding(barge);
     }
 
-    protected void disassemble(Level world, BlockPos pos, SeaterBargeEntity barge) {
+    protected void disassemble(Level world, BlockPos pos, ContraptionBargeEntity barge) {
         if (barge.getPassengers()
                 .isEmpty())
             return;

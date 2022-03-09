@@ -1,4 +1,4 @@
 {
-  "item.littlecontraptions.contraption_tug": "&oCreate(tm) &rBarge",
+  "item.littlecontraptions.contraption_barge": "§oCreate(tm) §rBarge",
   "block.littlecontraptions.barge_assembler": "Barge Assembler"
 }
