@@ -10,6 +10,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
@@ -44,8 +45,12 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
 
     public void positionRider(Entity entity) {
         if (this.hasPassenger(entity)) {
-            entity.setPos(this.getX(), this.getY() + 0.53125, this.getZ());
+            entity.setPos(getRiderPosition());
         }
+    }
+
+    public Vec3 getRiderPosition() {
+        return new Vec3(0, 0.5125, 0).add(this.getX(), this.getY(), this.getZ());
     }
 
     @NotNull

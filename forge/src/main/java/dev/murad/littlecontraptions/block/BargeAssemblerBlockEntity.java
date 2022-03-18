@@ -37,23 +37,22 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
             return;
         }
 
+        if (level == null) return;
+
         List<ContraptionBargeEntity> barges = level.getEntities(EntityTypeTest.forClass(ContraptionBargeEntity.class),
                 new AABB(getBlockPos()).deflate(0.3f),
                 (e) -> true);
 
         if (barges.size() > 0)
-            tryAssemble(barges.get(0));
+            tryApplyActions(barges.get(0));
     }
 
 
-    public void tryAssemble(ContraptionBargeEntity barge) {
-        if (barge == null)
+    public void tryApplyActions(ContraptionBargeEntity barge) {
+        if (barge == null || level == null || !canUpdate())
             return;
 
-        if (!isUpdateValid())
-            return;
-
-        resetTicksSinceMinecartUpdate();
+        setUpdated();
 
         BlockState state = level.getBlockState(worldPosition);
         if (state.getBlock() != LCBlocks.BARGE_ASSEMBLER.get())
@@ -67,34 +66,6 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
             assemble(level, worldPosition, barge);
         if (action.shouldDisassemble())
             disassemble(level, worldPosition, barge);
-//        if (action == CartAssemblerBlock.CartAssemblerAction.ASSEMBLE_ACCELERATE) {
-//            if (barge.getDeltaMovement()
-//                    .length() > 1 / 128f) {
-//                Direction facing = barge.getMotionDirection();
-//                RailShape railShape = state.getValue(CartAssemblerBlock.RAIL_SHAPE);
-//                for (Direction d : Iterate.directionsInAxis(railShape == RailShape.EAST_WEST ? Direction.Axis.X : Direction.Axis.Z))
-//                    if (level.getBlockState(worldPosition.relative(d))
-//                            .isRedstoneConductor(level, worldPosition.relative(d)))
-//                        facing = d.getOpposite();
-//
-//                float speed = block.getRailMaxSpeed(state, level, worldPosition, barge);
-//                barge.setDeltaMovement(facing.getStepX() * speed, facing.getStepY() * speed, facing.getStepZ() * speed);
-//            }
-//        }
-//        if (action == CartAssemblerBlock.CartAssemblerAction.ASSEMBLE_ACCELERATE_DIRECTIONAL) {
-//            Vec3i accelerationVector =
-//                    ControllerRailBlock.getAccelerationVector(AllBlocks.CONTROLLER_RAIL.getDefaultState()
-//                            .setValue(ControllerRailBlock.SHAPE, state.getValue(CartAssemblerBlock.RAIL_SHAPE))
-//                            .setValue(ControllerRailBlock.BACKWARDS, state.getValue(CartAssemblerBlock.BACKWARDS)));
-//            float speed = block.getRailMaxSpeed(state, level, worldPosition, barge);
-//            barge.setDeltaMovement(Vec3.atLowerCornerOf(accelerationVector)
-//                    .scale(speed));
-//        }
-//        if (action == CartAssemblerBlock.CartAssemblerAction.DISASSEMBLE_BRAKE) {
-//            Vec3 diff = VecHelper.getCenterOf(worldPosition)
-//                    .subtract(barge.position());
-//            barge.setDeltaMovement(diff.x / 16f, 0, diff.z / 16f);
-//        }
     }
 
     protected void assemble(Level world, BlockPos pos, ContraptionBargeEntity barge) {
@@ -125,7 +96,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
 
         OrientedContraptionEntity entity = OrientedContraptionEntity.create(world, contraption, initialOrientation);
 
-        entity.setPos(pos.getX(), pos.getY(), pos.getZ());
+        entity.setPos(barge.getRiderPosition());
         world.addFreshEntity(entity);
         entity.startRiding(barge);
     }
@@ -145,11 +116,11 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
         barge.ejectPassengers();
     }
 
-    public void resetTicksSinceMinecartUpdate() {
+    public void setUpdated() {
         ticksSinceLastUpdate = 0;
     }
 
-    private boolean isUpdateValid() {
+    private boolean canUpdate() {
         return ticksSinceLastUpdate >= assemblyCooldown;
     }
 
