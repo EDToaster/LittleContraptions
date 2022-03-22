@@ -1,6 +1,8 @@
 package ca.edtoaster.littlecontraptions;
 
 import ca.edtoaster.littlecontraptions.setup.Registration;
+import com.simibubi.create.foundation.ponder.PonderRegistry;
+import com.simibubi.create.foundation.ponder.ui.PonderButton;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;

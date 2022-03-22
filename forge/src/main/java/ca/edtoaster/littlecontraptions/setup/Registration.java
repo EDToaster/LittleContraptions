@@ -1,6 +1,7 @@
 package ca.edtoaster.littlecontraptions.setup;
 
 import ca.edtoaster.littlecontraptions.LCMod;
+import com.simibubi.create.repack.registrate.util.OneTimeEventReceiver;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.minecraft.world.item.BlockItem;
@@ -12,6 +13,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.*;
 
@@ -127,5 +129,9 @@ public class Registration {
         LCBlocks.register();
         LCBlockEntityTypes.register();
         LCEntityTypes.register();
+
+        OneTimeEventReceiver.addListener(eventBus, FMLClientSetupEvent.class, (event) -> {
+            event.enqueueWork(LCPonder::register);
+        });
     }
 }

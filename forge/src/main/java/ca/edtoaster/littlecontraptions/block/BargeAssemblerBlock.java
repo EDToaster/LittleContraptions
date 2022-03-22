@@ -3,6 +3,7 @@ package ca.edtoaster.littlecontraptions.block;
 
 import ca.edtoaster.littlecontraptions.setup.LCBlockEntityTypes;
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
+import com.simibubi.create.content.contraptions.wrench.IWrenchable;
 import dev.murad.shipping.entity.custom.VesselEntity;
 import dev.murad.shipping.util.TickerUtil;
 import net.minecraft.core.BlockPos;
@@ -23,7 +24,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class BargeAssemblerBlock extends Block implements EntityBlock {
+public class BargeAssemblerBlock extends Block implements EntityBlock, IWrenchable {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final Property<RailShape> RAIL_SHAPE = CartAssemblerBlock.RAIL_SHAPE;
