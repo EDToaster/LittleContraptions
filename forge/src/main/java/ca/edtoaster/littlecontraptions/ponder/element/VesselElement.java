@@ -23,13 +23,9 @@ public class VesselElement<T extends VesselEntity> extends AnimatedSceneElement 
     private T entity;
     private EntityConstructor<T> constructor;
     private float initialRotation;
-    @Getter
-    private final Class<VesselElement<T>> reifiedClass;
 
     public VesselElement(Vec3 location, float rotation, EntityConstructor<T> constructor) {
         //noinspection unchecked
-        this.reifiedClass = (Class<VesselElement<T>>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
         this.initialRotation = rotation;
         this.location = location.add(0.0D, 0.0625D, 0.0D);
         this.constructor = constructor;

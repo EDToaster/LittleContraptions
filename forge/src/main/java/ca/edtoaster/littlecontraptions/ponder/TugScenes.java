@@ -44,7 +44,7 @@ public class TugScenes {
 
         // Spawn tug
         ElementLink<VesselElement<SteamTugEntity>> steamTug =
-                bargeInst.createVessel(util.vector.topOf(2, 0, 4), 90.0F, SteamTugEntity::new);
+                bargeInst.createVessel(util.vector.topOf(4, 0, 5), 270.0F, SteamTugEntity::new);
         scene.idle(10);
 
     }

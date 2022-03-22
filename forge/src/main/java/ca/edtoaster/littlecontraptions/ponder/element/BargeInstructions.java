@@ -16,7 +16,8 @@ public class BargeInstructions {
 
     public <T extends VesselEntity> ElementLink<VesselElement<T>> createVessel(Vec3 location, float angle, VesselElement.EntityConstructor<T> type) {
         VesselElement<T> cart = new VesselElement<>(location.subtract(0, 0.5, 0), angle, type);
-        ElementLink<VesselElement<T>> link = new ElementLink<>(cart.getReifiedClass());
+        @SuppressWarnings("unchecked")
+        ElementLink<VesselElement<T>> link = new ElementLink<>((Class<VesselElement<T>>) cart.getClass());
         builder.addInstruction(new CreateContraptionBargeInstruction(10, Direction.DOWN, cart));
         builder.addInstruction((scene) -> {
             scene.linkElement(cart, link);
