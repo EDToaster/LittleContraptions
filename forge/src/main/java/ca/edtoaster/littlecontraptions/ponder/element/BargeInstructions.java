@@ -2,7 +2,6 @@ package ca.edtoaster.littlecontraptions.ponder.element;
 
 import com.simibubi.create.foundation.ponder.ElementLink;
 import com.simibubi.create.foundation.ponder.SceneBuilder;
-import com.simibubi.create.foundation.ponder.instruction.PonderInstruction;
 import dev.murad.shipping.entity.custom.VesselEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;

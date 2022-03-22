@@ -8,20 +8,31 @@ import com.simibubi.create.content.contraptions.components.structureMovement.Ori
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerTileEntity;
 import com.simibubi.create.content.contraptions.components.structureMovement.mounted.MountedContraption;
+import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
+import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
+import com.simibubi.create.foundation.tileEntity.behaviour.CenteredSideValueBoxTransform;
+import com.simibubi.create.foundation.tileEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.foundation.tileEntity.behaviour.scrollvalue.ScrollOptionBehaviour;
+import com.simibubi.create.foundation.utility.Lang;
+import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.RailShape;
 import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class BargeAssemblerBlockEntity extends BlockEntity {
+public class BargeAssemblerBlockEntity extends SmartTileEntity {
     private static final int assemblyCooldown = 8;
 
+    // TODO: this isn't set on reload
+    protected ScrollOptionBehaviour<CartAssemblerTileEntity.CartMovementMode> movementMode;
     private int ticksSinceLastUpdate;
     protected AssemblyException lastException;
 
@@ -73,7 +84,7 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
                 .isEmpty())
             return;
 
-        CartAssemblerTileEntity.CartMovementMode mode = CartAssemblerTileEntity.CartMovementMode.ROTATE;
+        CartAssemblerTileEntity.CartMovementMode mode = CartAssemblerTileEntity.CartMovementMode.values()[movementMode.value];
 
         MountedContraption contraption = new MountedContraption(mode);
         try {
@@ -128,4 +139,35 @@ public class BargeAssemblerBlockEntity extends BlockEntity {
         e.serverTick();
     }
 
+    private class BargeAssemblerValueBoxTransform extends CenteredSideValueBoxTransform {
+
+        public BargeAssemblerValueBoxTransform() {
+            super((state, d) -> {
+                if (d.getAxis()
+                        .isVertical())
+                    return false;
+                if (!state.hasProperty(BargeAssemblerBlock.FACING))
+                    return false;
+                return state.getValue(BargeAssemblerBlock.FACING).getAxis() != d.getAxis();
+            });
+        }
+
+        @Override
+        protected Vec3 getSouthLocation() {
+            return VecHelper.voxelSpace(8, 8, 18);
+        }
+
+    }
+
+    protected ValueBoxTransform getMovementModeSlot() {
+        return new BargeAssemblerValueBoxTransform();
+    }
+
+    @Override
+    public void addBehaviours(List<TileEntityBehaviour> behaviours) {
+        movementMode = new ScrollOptionBehaviour<>(CartAssemblerTileEntity.CartMovementMode.class,
+                Lang.translate("contraptions.cart_movement_mode"), this, getMovementModeSlot());
+        movementMode.requiresWrench();
+        behaviours.add(movementMode);
+    }
 }

@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public class BargeAssemblerBlock extends Block implements EntityBlock, IWrenchable {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    // Required just to pass contraption check. We don't actually use this for anything.
     public static final Property<RailShape> RAIL_SHAPE = CartAssemblerBlock.RAIL_SHAPE;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
@@ -67,7 +68,6 @@ public class BargeAssemblerBlock extends Block implements EntityBlock, IWrenchab
     public BlockState getStateForPlacement(BlockPlaceContext context){
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection())
-                .setValue(RAIL_SHAPE, RailShape.NORTH_SOUTH)
                 .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }
 
@@ -98,6 +98,4 @@ public class BargeAssemblerBlock extends Block implements EntityBlock, IWrenchab
     public VoxelShape getCollisionShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return context instanceof EntityCollisionContext c && c.getEntity() instanceof VesselEntity ? Shapes.empty() : state.getShape(world, pos);
     }
-
-
 }

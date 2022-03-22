@@ -39,7 +39,8 @@ public class LCPonder {
                 .add(BARGE_ASSEMBLER_ENTRY);
 
         PonderRegistry.TAGS.forTag(LC_TUGS)
-                .add(STEAM_TUG_ITEM_ENTRY);
+                .add(STEAM_TUG_ITEM_ENTRY)
+                .add(BARGE_ASSEMBLER_ENTRY);
     }
 
     private static PonderTag createPonderTag(String id) {
