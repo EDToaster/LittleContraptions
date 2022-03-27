@@ -17,6 +17,7 @@ import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -42,6 +43,7 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
     }
 
     private void serverTick() {
+        this.tick();
         // do cooldown checking
         if (ticksSinceLastUpdate < assemblyCooldown) {
             ticksSinceLastUpdate++;
@@ -157,6 +159,18 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
             return VecHelper.voxelSpace(8, 8, 18);
         }
 
+    }
+
+    @Override
+    public void write(CompoundTag compound, boolean clientPacket) {
+        AssemblyException.write(compound, lastException);
+        super.write(compound, clientPacket);
+    }
+
+    @Override
+    protected void read(CompoundTag compound, boolean clientPacket) {
+        lastException = AssemblyException.read(compound);
+        super.read(compound, clientPacket);
     }
 
     protected ValueBoxTransform getMovementModeSlot() {
