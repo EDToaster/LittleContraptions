@@ -67,7 +67,9 @@ processResources {
                 "mod_license":              project.mod_license,
                 "mc_version_range":         project.mc_version_range,
                 "forge_version_range":      project.forge_version_range,
-                "patchouli_version_range":  project.patchouli_version_range
+                "patchouli_version_range":  project.patchouli_version_range,
+                "create_version_range":     project.create_version_range,
+                "ll_version_range":     project.ll_version_range
     }
     filesMatching("pack.mcmeta") {
         expand "mod_id": project.mod_id
@@ -126,14 +128,14 @@ publishing {
             }
         }
 
-//        maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
-//
-//            credentials {
-//                username = System.getenv("GITHUB_ACTOR")
-//                password = System.getenv("GITHUB_TOKEN")
-//            }
-//        }
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/EDToaster/LittleContraptions")
+
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
