@@ -33,7 +33,7 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
     private static final int assemblyCooldown = 8;
 
     // TODO: this isn't set on reload
-    protected ScrollOptionBehaviour<CartAssemblerTileEntity.CartMovementMode> movementMode;
+//    protected ScrollOptionBehaviour<CartAssemblerTileEntity.CartMovementMode> movementMode;
     private int ticksSinceLastUpdate;
     protected AssemblyException lastException;
 
@@ -86,7 +86,7 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
                 .isEmpty())
             return;
 
-        CartAssemblerTileEntity.CartMovementMode mode = CartAssemblerTileEntity.CartMovementMode.values()[movementMode.value];
+        CartAssemblerTileEntity.CartMovementMode mode = CartAssemblerTileEntity.CartMovementMode.ROTATE;
 
         MountedContraption contraption = new MountedContraption(mode);
         try {
@@ -120,9 +120,8 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
             return;
         Entity entity = barge.getPassengers()
                 .get(0);
-        if (!(entity instanceof OrientedContraptionEntity))
+        if (!(entity instanceof OrientedContraptionEntity contraption))
             return;
-        OrientedContraptionEntity contraption = (OrientedContraptionEntity) entity;
 
         contraption.yaw = BargeAssemblerBlock.getHorizontalDirection(getBlockState())
                 .toYRot();
@@ -179,9 +178,9 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
 
     @Override
     public void addBehaviours(List<TileEntityBehaviour> behaviours) {
-        movementMode = new ScrollOptionBehaviour<>(CartAssemblerTileEntity.CartMovementMode.class,
-                Lang.translate("contraptions.cart_movement_mode"), this, getMovementModeSlot());
-        movementMode.requiresWrench();
-        behaviours.add(movementMode);
+//        movementMode = new ScrollOptionBehaviour<>(CartAssemblerTileEntity.CartMovementMode.class,
+//                Lang.translate("contraptions.cart_movement_mode"), this, getMovementModeSlot());
+//        movementMode.requiresWrench();
+//        behaviours.add(movementMode);
     }
 }
