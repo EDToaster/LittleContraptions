@@ -20,5 +20,4 @@ jobs:
       - name: Verify artifact
         run: |
           ./gradlew wrapper
-          ./gradlew runData
           ./gradlew build
