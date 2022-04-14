@@ -30,6 +30,22 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
     }
 
     @Override
+    public void tick() {
+        if (this.level.isClientSide) {
+            // back-calculate xo, yo, and zo on client side to provide smooth
+            // rot to contraption entity
+            Vec3 clientPos = position();
+            float yRotRad = getYRot() * Mth.DEG_TO_RAD;
+            double xOff = -Mth.sin(yRotRad);
+            double zOff = Mth.cos(yRotRad);
+            yo = clientPos.y;
+            xo = clientPos.x - xOff;
+            zo = clientPos.z - zOff;
+        }
+        super.tick();
+    }
+
+    @Override
     protected boolean canAddPassenger(Entity p_184219_1_) {
         return this.getPassengers().size() < 1;
     }
