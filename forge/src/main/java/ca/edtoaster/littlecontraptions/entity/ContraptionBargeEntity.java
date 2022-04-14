@@ -31,6 +31,7 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
 
     @Override
     public void tick() {
+        super.tick();
         if (this.level.isClientSide) {
             // back-calculate xo, yo, and zo on client side to provide smooth
             // rot to contraption entity
@@ -42,7 +43,6 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
             xo = clientPos.x - xOff;
             zo = clientPos.z - zOff;
         }
-        super.tick();
     }
 
     @Override
