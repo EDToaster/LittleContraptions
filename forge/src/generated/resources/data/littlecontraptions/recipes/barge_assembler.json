@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    "ARA",
+    "LCL"
+  ],
+  "key": {
+    "L": {
+      "tag": "minecraft:logs"
+    },
+    "A": {
+      "item": "create:andesite_alloy"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "littlelogistics:spring"
+    }
+  },
+  "result": {
+    "item": "littlecontraptions:barge_assembler"
+  }
+}
