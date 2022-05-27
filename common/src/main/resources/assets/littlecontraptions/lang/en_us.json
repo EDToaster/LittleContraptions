@@ -2,9 +2,21 @@
   "item.littlecontraptions.contraption_barge": "Contraption Barge",
   "block.littlecontraptions.barge_assembler": "Barge Assembler",
 
+  "littlecontraptions.ponder.tag.tugs": "Little Logistics Tugs",
+  "littlecontraptions.ponder.tag.tugs.description": "Water trains with pathfinding!",
+
+  "littlecontraptions.ponder.tag.trains": "Little Logistics Locomotives",
+  "littlecontraptions.ponder.tag.trains.description": "Small but smart locomotives!",
+
   "littlecontraptions.ponder.basic_assembler.header": "Moving Structures using Barge Assemblers",
   "littlecontraptions.ponder.basic_assembler.text_1": "Powered Barge Assemblers mount attached structures to passing Contraption Barges",
   "littlecontraptions.ponder.basic_assembler.text_2": "Without a redstone signal, it disassembles passing barge contraptions back into blocks",
+  "littlecontraptions.ponder.basic_assembler.text_3": "Similar to Cart Contraptions, you can attach larger contraptions using Chassis and Super Glue",
 
-  "littlecontraptions.ponder.basic_tug.header": "Creating and using Tug Boats"
+  "littlecontraptions.ponder.basic_tug.header": "Just the basics about tugs",
+  "littlecontraptions.ponder.basic_tug.text_1": "Tugboats can be placed anywhere on water",
+  "littlecontraptions.ponder.basic_tug.text_2": "Tugboats will naturally pathfind to Tug Route waypoints",
+  "littlecontraptions.ponder.basic_tug.text_3": "Putting the Tug Route item in the Tug will start its journey!",
+  "littlecontraptions.ponder.basic_tug.text_4": "Sometimes tugboats will get stuck on corners. This is fixable by using a corner guide rail",
+  "littlecontraptions.ponder.basic_tug.text_5": "If the corner guide rail is facing the wrong way, shift-right click it to flip it"
 }
