@@ -10,7 +10,6 @@ import com.simibubi.create.foundation.ponder.PonderRegistry;
 import com.simibubi.create.foundation.ponder.PonderTag;
 import com.simibubi.create.repack.registrate.util.entry.BlockEntry;
 import com.simibubi.create.repack.registrate.util.entry.ItemEntry;
-import dev.murad.shipping.block.guiderail.CornerGuideRailBlock;
 import dev.murad.shipping.setup.ModBlocks;
 import dev.murad.shipping.setup.ModItems;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +24,8 @@ public class LCPonder {
 
     public static final BlockEntry<BargeAssemblerBlock> BARGE_ASSEMBLER_ENTRY = new BlockEntry<>(createRegistrate, LCBlocks.BARGE_ASSEMBLER);
     public static final BlockEntry<Block> CORNER_GUIDE_RAIL_BLOCK_BLOCK_ENTRY = new BlockEntry<>(createRegistrate, ModBlocks.GUIDE_RAIL_CORNER);
+    public static final BlockEntry<Block> BARGE_DOCK_ENTRY = new BlockEntry<>(createRegistrate, ModBlocks.BARGE_DOCK);
+    public static final BlockEntry<Block> TUG_DOCK_ENTRY = new BlockEntry<>(createRegistrate, ModBlocks.TUG_DOCK);
 
     public static final ItemEntry<Item> STEAM_TUG_ITEM_ENTRY = new ItemEntry<>(createRegistrate, ModItems.STEAM_TUG);
     public static final ItemEntry<Item> ENERGY_TUG_ITEM_ENTRY = new ItemEntry<>(createRegistrate, ModItems.ENERGY_TUG);
@@ -44,6 +45,9 @@ public class LCPonder {
         HELPER.forComponents(STEAM_TUG_ITEM_ENTRY, CORNER_GUIDE_RAIL_BLOCK_BLOCK_ENTRY, ENERGY_TUG_ITEM_ENTRY, TUG_ROUTE_ENTRY)
                 .addStoryBoard("basic_tug", TugScenes::basicTugScene);
 
+        HELPER.forComponents(BARGE_DOCK_ENTRY, TUG_DOCK_ENTRY)
+                .addStoryBoard("tug_dock", TugScenes::dockingScene);
+
         PonderRegistry.TAGS.forTag(PonderTag.MOVEMENT_ANCHOR)
                 .add(BARGE_ASSEMBLER_ENTRY);
 
@@ -53,6 +57,8 @@ public class LCPonder {
                 .add(ENERGY_TUG_ITEM_ENTRY)
                 .add(BARGE_ASSEMBLER_ENTRY)
                 .add(CONTRAPTION_BARGE_ENTRY)
+                .add(BARGE_DOCK_ENTRY)
+                .add(TUG_DOCK_ENTRY)
                 .add(TUG_ROUTE_ENTRY);
     }
 
