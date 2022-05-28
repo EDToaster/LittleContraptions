@@ -13,7 +13,7 @@ public class AssemblerScenes {
     public static void basicAssemblerScene(SceneBuilder scene, SceneBuildingUtil util) {
         BargeInstructions bargeInst = new BargeInstructions(scene);
 
-        scene.title("basic_tug", "Moving Structures using Barge Assemblers");
+        scene.title("basic_assembler", "Moving Structures using Barge Assemblers");
         scene.configureBasePlate(0, 0, 5);
         scene.scaleSceneView(0.9F);
         scene.world.showSection(util.select.fromTo(0, 0, 0, 1, 0, 4)
