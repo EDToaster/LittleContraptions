@@ -10,6 +10,7 @@ import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import com.simibubi.create.foundation.utility.Pointing;
 import dev.murad.shipping.block.dock.DockingBlockStates;
 import dev.murad.shipping.block.rail.AbstractDockingRail;
+import dev.murad.shipping.block.rail.SwitchRail;
 import dev.murad.shipping.entity.custom.barge.ChestBargeEntity;
 import dev.murad.shipping.entity.custom.barge.FishingBargeEntity;
 import dev.murad.shipping.entity.custom.train.locomotive.EnergyLocomotiveEntity;
@@ -159,5 +160,66 @@ public class LocomotiveScenes {
         scene.idle(5);
 
 
+    }
+
+    public static void routeScene(SceneBuilder scene, SceneBuildingUtil util) {
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
+
+        // Setup Scene
+        scene.title("loco_route", "Locomotive routing");
+        scene.configureBasePlate(0, 0, 7);
+        scene.scaleSceneView(0.75f);
+        scene.world.showSection(util.select.fromTo(0, 0, 0, 6, 0, 6), Direction.UP);
+        scene.idle(5);
+
+        // add rails
+
+        List<BlockPos> railPos = List.of(
+                of(0, 1, 5),
+                of(1, 1, 5),
+                of(2, 1, 5),
+                of(3, 1, 5),
+                of(4, 1, 5),
+                of(5, 1, 5),
+                of(6, 1, 5),
+                of(3, 1, 2),
+                of(3, 1, 3),
+                of(3, 1, 4),
+                of(0, 1, 1),
+                of(1, 1, 1),
+                of(2, 1, 1),
+                of(3, 1, 1),
+                of(4, 1, 1),
+                of(5, 1, 1),
+                of(6, 1, 1));
+
+        for (BlockPos pos : railPos) {
+            scene.world.showSection(util.select.position(pos), Direction.DOWN);
+            scene.idle(2);
+        }
+
+        scene.world.modifyBlock(of(3,1,5), LocomotiveScenes::flipAutoRail, false);
+        scene.idle(100);
+        scene.world.modifyBlock(of(3,1,1), LocomotiveScenes::flipAutoRail, false);
+
+
+        // Spawn train
+
+        ElementLink<VehicleElement<Entity>> tug =
+                bargeInst.createVessel(util.vector.of(4.5,1.5,3.5), 270.0F, EnergyLocomotiveEntity::new);
+
+        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
+
+
+        scene.idle(80);
+
+        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
+
+
+        scene.idle(5);
+    }
+
+    private static BlockState flipAutoRail(BlockState autorail){
+        return autorail.setValue(SwitchRail.POWERED, true);
     }
 }
