@@ -77,14 +77,16 @@ public class LocomotiveScenes {
                 .placeNearTarget()
                 .text("Every docking station needs to have one locomotive dock rails and a direct line of car dock rails");
 
-        scene.idle(110);
+        scene.idle(120);
 
         scene.overlay.showText(100)
                 .pointAt(util.vector.topOf(of(4, 0, 3)))
                 .placeNearTarget()
                 .text("Train car docks can be switched from blue (wait for unloading) to orange (wait for loading) using conductor's wrench");
 
-        scene.idle(120);
+        scene.idle(130);
+
+        scene.addKeyframe();
 
         scene.overlay.showControls((new InputWindowElement(util.vector.topOf(of(4, 0, 3)), Pointing.DOWN))
                 .rightClick()
@@ -123,6 +125,8 @@ public class LocomotiveScenes {
         scene.idle(100);
 
         // add the rest of the surface
+
+        scene.addKeyframe();
 
         scene.world.showSection(util.select.fromTo(0, 0, 0, 6, 0, 2), Direction.UP);
 

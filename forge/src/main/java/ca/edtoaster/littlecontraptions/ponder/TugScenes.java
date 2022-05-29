@@ -203,14 +203,16 @@ public class TugScenes {
                 .placeNearTarget()
                 .text("Every docking station needs to have one tug dock block and a direct line of barge docks blocks.");
 
-        scene.idle(110);
+        scene.idle(120);
 
         scene.overlay.showText(100)
                 .pointAt(util.vector.topOf(of(4, 0, 4)))
                 .placeNearTarget()
                 .text("Barge docks can be switched from blue (wait for unloading) to orange (wait for loading) using conductor's wrench.");
 
-        scene.idle(120);
+        scene.idle(130);
+
+        scene.addKeyframe();
 
         scene.overlay.showControls((new InputWindowElement(util.vector.topOf(of(4, 0, 4)), Pointing.DOWN))
                 .rightClick()
@@ -242,6 +244,8 @@ public class TugScenes {
                 .text("To unload the vessels, place a hopper below the water block.");
 
         scene.idle(100);
+
+        scene.addKeyframe();
 
         // add the rest of the surface
 
