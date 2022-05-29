@@ -12,19 +12,20 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 import java.lang.reflect.ParameterizedType;
 
-public class VesselElement<T extends VesselEntity> extends AnimatedSceneElement {
+public class VehicleElement<T extends Entity> extends AnimatedSceneElement {
     private Vec3 location;
     private LerpedFloat rotation;
     private T entity;
     private EntityConstructor<T> constructor;
     private float initialRotation;
 
-    public VesselElement(Vec3 location, float rotation, EntityConstructor<T> constructor) {
+    public VehicleElement(Vec3 location, float rotation, EntityConstructor<T> constructor) {
         //noinspection unchecked
         this.initialRotation = rotation;
         this.location = location.add(0.0D, 0.0625D, 0.0D);
@@ -102,7 +103,7 @@ public class VesselElement<T extends VesselEntity> extends AnimatedSceneElement 
         ms.popPose();
     }
 
-    public interface EntityConstructor<T extends VesselEntity> {
+    public interface EntityConstructor<T extends Entity> {
         T create(Level var1, double var2, double var4, double var6);
     }
 }

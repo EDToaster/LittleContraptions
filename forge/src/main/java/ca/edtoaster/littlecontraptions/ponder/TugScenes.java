@@ -1,7 +1,7 @@
 package ca.edtoaster.littlecontraptions.ponder;
 
-import ca.edtoaster.littlecontraptions.ponder.element.BargeInstructions;
-import ca.edtoaster.littlecontraptions.ponder.element.VesselElement;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleInstructions;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleElement;
 import com.simibubi.create.foundation.ponder.ElementLink;
 import com.simibubi.create.foundation.ponder.SceneBuilder;
 import com.simibubi.create.foundation.ponder.SceneBuildingUtil;
@@ -36,7 +36,7 @@ public class TugScenes {
     }
 
     public static void basicTugScene(SceneBuilder scene, SceneBuildingUtil util) {
-        BargeInstructions bargeInst = new BargeInstructions(scene);
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
 
         // Setup Scene
         scene.title("basic_tug", "Just the basics about tugs");
@@ -79,7 +79,7 @@ public class TugScenes {
                 .withItem(stackOf(ModItems.STEAM_TUG.get())), 50);
         scene.idle(70);
 
-        ElementLink<VesselElement<SteamTugEntity>> steamTug =
+        ElementLink<VehicleElement<SteamTugEntity>> steamTug =
                 bargeInst.createVessel(util.vector.topOf(steamTugInitialPosition), 270.0F, SteamTugEntity::new);
 
         scene.idle(20);
@@ -182,7 +182,7 @@ public class TugScenes {
     }
 
     public static void dockingScene(SceneBuilder scene, SceneBuildingUtil util) {
-        BargeInstructions bargeInst = new BargeInstructions(scene);
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
 
         // Setup Scene
         scene.title("tug_dock", "Docking the tug");
@@ -264,11 +264,11 @@ public class TugScenes {
         }
 
         // Spawn vessels
-        ElementLink<VesselElement<EnergyTugEntity>> tug =
+        ElementLink<VehicleElement<EnergyTugEntity>> tug =
                 bargeInst.createVessel(util.vector.of(4.5,1,3.5), 270.0F, EnergyTugEntity::new);
-        ElementLink<VesselElement<FishingBargeEntity>> chest1 =
+        ElementLink<VehicleElement<FishingBargeEntity>> chest1 =
                 bargeInst.createVessel(util.vector.of(5.5,1,3.5), 270.0F, FishingBargeEntity::new);
-        ElementLink<VesselElement<ChestBargeEntity>> chest2 =
+        ElementLink<VehicleElement<ChestBargeEntity>> chest2 =
                 bargeInst.createVessel(util.vector.of(6.5,1,3.5), 270.0F, ChestBargeEntity::new);
 
         bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);

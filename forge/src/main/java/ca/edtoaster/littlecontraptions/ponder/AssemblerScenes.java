@@ -1,8 +1,8 @@
 package ca.edtoaster.littlecontraptions.ponder;
 
 import ca.edtoaster.littlecontraptions.entity.ContraptionBargeEntity;
-import ca.edtoaster.littlecontraptions.ponder.element.BargeInstructions;
-import ca.edtoaster.littlecontraptions.ponder.element.VesselElement;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleInstructions;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleElement;
 import com.simibubi.create.foundation.ponder.*;
 import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import net.minecraft.core.BlockPos;
@@ -11,7 +11,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class AssemblerScenes {
     public static void basicAssemblerScene(SceneBuilder scene, SceneBuildingUtil util) {
-        BargeInstructions bargeInst = new BargeInstructions(scene);
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
 
         scene.title("basic_assembler", "Moving Structures using Barge Assemblers");
         scene.configureBasePlate(0, 0, 5);
@@ -39,7 +39,7 @@ public class AssemblerScenes {
         scene.idle(80);
 
         // Spawn barge
-        ElementLink<VesselElement<ContraptionBargeEntity>> barge =
+        ElementLink<VehicleElement<ContraptionBargeEntity>> barge =
                 bargeInst.createVessel(util.vector.topOf(2, 0, 4), 90.0F, ContraptionBargeEntity::new);
         scene.world.showSection(util.select.position(assemblerPos.above()), Direction.DOWN);
         scene.idle(10);

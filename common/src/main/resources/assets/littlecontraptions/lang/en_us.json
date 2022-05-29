@@ -21,10 +21,18 @@
   "littlecontraptions.ponder.basic_tug.text_5": "If the corner guide rail is facing the wrong way, shift-right click it to flip it",
 
   "littlecontraptions.ponder.tug_dock.header": "Docking the tug",
-  "littlecontraptions.ponder.tug_dock.text_1": "Docks can be used to stop tugboats automatically while loading/unloading",
+  "littlecontraptions.ponder.tug_dock.text_1": "Docks can be used to stop the tugboats automatically while loading/unloading",
   "littlecontraptions.ponder.tug_dock.text_2": "Every docking station needs to have one tug dock block and a direct line of barge docks blocks",
   "littlecontraptions.ponder.tug_dock.text_3": "Barge docks can be switched from blue (wait for unloading) to orange (wait for loading) using conductor's wrench",
   "littlecontraptions.ponder.tug_dock.text_4": "To load the vessels, place a hopper on top of the dock",
   "littlecontraptions.ponder.tug_dock.text_5": "To unload the vessels, place a hopper below the water block",
-  "littlecontraptions.ponder.tug_dock.text_6": "The tug will automatically wait until all vessels are fully loaded/unloaded"
+  "littlecontraptions.ponder.tug_dock.text_6": "The tug will automatically wait until all vessels are fully loaded/unloaded",
+
+  "littlecontraptions.ponder.loco_dock.header": "Docking the locomotive",
+  "littlecontraptions.ponder.loco_dock.text_1": "Docks can be used to stop the locomotives automatically while loading/unloading",
+  "littlecontraptions.ponder.loco_dock.text_2": "Every docking station needs to have one locomotive dock rails and a direct line of car dock rails",
+  "littlecontraptions.ponder.loco_dock.text_3": "Train car docks can be switched from blue (wait for unloading) to orange (wait for loading) using conductor's wrench",
+  "littlecontraptions.ponder.loco_dock.text_4": "To load the trains, place a hopper beside the dock",
+  "littlecontraptions.ponder.loco_dock.text_5": "To unload the trains, place a hopper below the rail block",
+  "littlecontraptions.ponder.loco_dock.text_6": "The locomotive will automatically wait until the whole train is loaded/unloaded"
 }
