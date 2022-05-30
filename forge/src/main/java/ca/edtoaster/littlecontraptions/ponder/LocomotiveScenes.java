@@ -5,19 +5,21 @@ import ca.edtoaster.littlecontraptions.ponder.element.VehicleElement;
 import com.simibubi.create.foundation.ponder.ElementLink;
 import com.simibubi.create.foundation.ponder.SceneBuilder;
 import com.simibubi.create.foundation.ponder.SceneBuildingUtil;
+import com.simibubi.create.foundation.ponder.element.EntityElement;
 import com.simibubi.create.foundation.ponder.element.InputWindowElement;
-import com.simibubi.create.foundation.ponder.element.WorldSectionElement;
 import com.simibubi.create.foundation.utility.Pointing;
 import dev.murad.shipping.block.dock.DockingBlockStates;
 import dev.murad.shipping.block.rail.AbstractDockingRail;
 import dev.murad.shipping.block.rail.SwitchRail;
-import dev.murad.shipping.entity.custom.barge.ChestBargeEntity;
-import dev.murad.shipping.entity.custom.barge.FishingBargeEntity;
 import dev.murad.shipping.entity.custom.train.locomotive.EnergyLocomotiveEntity;
+import dev.murad.shipping.entity.custom.train.locomotive.SteamLocomotiveEntity;
 import dev.murad.shipping.entity.custom.train.wagon.ChestCarEntity;
-import dev.murad.shipping.entity.custom.tug.EnergyTugEntity;
+import dev.murad.shipping.item.LocoRouteItem;
+import dev.murad.shipping.item.TugRouteItem;
 import dev.murad.shipping.setup.ModBlocks;
 import dev.murad.shipping.setup.ModItems;
+import dev.murad.shipping.util.LocoRoute;
+import dev.murad.shipping.util.LocoRouteNode;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -25,10 +27,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.BaseRailBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RailBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.RailShape;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class LocomotiveScenes {
@@ -134,15 +137,15 @@ public class LocomotiveScenes {
         // Spawn train
 
         ElementLink<VehicleElement<Entity>> tug =
-                bargeInst.createVessel(util.vector.of(4.5,1.5,3.5), 270.0F, EnergyLocomotiveEntity::new);
+                bargeInst.createVehicle(util.vector.of(4.5,1.5,3.5), 270.0F, EnergyLocomotiveEntity::new);
         ElementLink<VehicleElement<Entity>> chest1 =
-                bargeInst.createVessel(util.vector.of(5.5,1.5,3.5), 270.0F, ChestCarEntity::new);
+                bargeInst.createVehicle(util.vector.of(5.5,1.5,3.5), 270.0F, ChestCarEntity::new);
         ElementLink<VehicleElement<Entity>> chest2 =
-                bargeInst.createVessel(util.vector.of(6.5,1.5,3.5), 270.0F, ChestCarEntity::new);
+                bargeInst.createVehicle(util.vector.of(6.5,1.5,3.5), 270.0F, ChestCarEntity::new);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(80);
 
@@ -153,9 +156,9 @@ public class LocomotiveScenes {
 
         scene.idle(100);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(5);
 
@@ -198,28 +201,125 @@ public class LocomotiveScenes {
             scene.idle(2);
         }
 
-        scene.world.modifyBlock(of(3,1,5), LocomotiveScenes::flipAutoRail, false);
+        scene.overlay.showText(90)
+                .pointAt(util.vector.topOf(of(3, 0, 5)))
+                .placeNearTarget()
+                .text("Automatic switch tracks let you create train routes that share stretches of rail");
+
+
         scene.idle(100);
+
+        scene.overlay.showControls((new InputWindowElement(util.vector.topOf(of(1, 0, 1)), Pointing.DOWN))
+                .rightClick()
+                .withItem(stackOf(ModItems.LOCO_ROUTE.get())), 30);
+
+        scene.overlay.showText(100)
+                .pointAt(util.vector.topOf(of(1, 0, 1)))
+                .placeNearTarget()
+                .text("Routes are defined by waypoints by right-clicking with the locomotive route item");
+
+        ItemStack route = stackOf(ModItems.LOCO_ROUTE.get());
+        try {
+            // terrible hacks to make it green
+            LocoRoute routeSet = new LocoRoute();
+            routeSet.add(new LocoRouteNode("", 0, 0, 0));
+            LocoRouteItem itemObj = (LocoRouteItem) ModItems.LOCO_ROUTE.get();
+            Method save = itemObj.getClass().getDeclaredMethod("saveRoute", ItemStack.class, LocoRoute.class);
+            save.setAccessible(true);
+            save.invoke(itemObj, route, routeSet);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        ElementLink<EntityElement> firstWaypoint = scene.world.createItemEntity(
+                util.vector.topOf(of(1,0,1)),
+                util.vector.of(0.0D, 0.0D, 0.0D),
+                route);
+
+        scene.idle(110);
+
+        // first train
+
+        scene.addKeyframe();
+
+        ElementLink<VehicleElement<Entity>> loco1 =
+                bargeInst.createVehicle(util.vector.of(6.5,1.5,5.5), 270.0F, SteamLocomotiveEntity::new);
+
+        bargeInst.moveVehicle(loco1, util.vector.of(-1.5, 0, 0), 25);
+
+        scene.overlay.showText(120)
+                .pointAt(util.vector.topOf(of(3, 0, 5)))
+                .placeNearTarget()
+                .text("The locomotive will switch the rails automatically, selecting the branch that leads to the waypoint");
+
+        scene.idle(130);
+        scene.world.modifyBlock(of(3,1,5), LocomotiveScenes::flipAutoRail, false);
+
+
+        bargeInst.moveVehicle(loco1, util.vector.of(-1.5, 0, 0), 25);
+
+
+        scene.idle(25);
+        bargeInst.rotateVehicle(loco1, -90, 10);
+        scene.idle(10);
+        bargeInst.moveVehicle(loco1, util.vector.of(0, 0, -4), 50);
+
+        scene.idle(25);
         scene.world.modifyBlock(of(3,1,1), LocomotiveScenes::flipAutoRail, false);
 
+        scene.idle(25);
+        bargeInst.rotateVehicle(loco1, 90, 10);
+        scene.idle(10);
+        bargeInst.moveVehicle(loco1, util.vector.of(-3, 0, 0), 50);
+        scene.idle(40);
+        scene.world.modifyEntity(firstWaypoint, Entity::discard);
+        scene.idle(10);
+        bargeInst.removeVehicle(loco1);
 
-        // Spawn train
+        scene.idle(10);
 
-        ElementLink<VehicleElement<Entity>> tug =
-                bargeInst.createVessel(util.vector.of(4.5,1.5,3.5), 270.0F, EnergyLocomotiveEntity::new);
+        // second train
+        scene.addKeyframe();
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
+        ElementLink<VehicleElement<Entity>> loco2 =
+                bargeInst.createVehicle(util.vector.of(6.5,1.5,5.5), 270.0F, EnergyLocomotiveEntity::new);
+
+        ElementLink<EntityElement> secondWaypoint = scene.world.createItemEntity(
+                util.vector.topOf(of(5,0,1)),
+                util.vector.of(0.0D, 0.0D, 0.0D),
+                route);
+
+        ElementLink<EntityElement> thirdWaypoint = scene.world.createItemEntity(
+                util.vector.topOf(of(1,0,5)),
+                util.vector.of(0.0D, 0.0D, 0.0D),
+                route);
 
 
-        scene.idle(80);
+        bargeInst.moveVehicle(loco2, util.vector.of(-1.5, 0, 0), 25);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
 
+        scene.overlay.showText(120)
+                .pointAt(util.vector.topOf(of(3, 0, 5)))
+                .placeNearTarget()
+                .text("Given two waypoints, the locomotive will select a branch with the closest waypoint that has not been visited yet");
+
+        scene.idle(130);
+        scene.world.modifyBlock(of(3,1,5), LocomotiveScenes::flipAutoRail, false);
+        bargeInst.moveVehicle(loco2, util.vector.of(-4.5, 0, 0), 75);
+
+        scene.idle(60);
+
+        scene.overlay.showText(120)
+                .pointAt(util.vector.topOf(of(1, 0, 5)))
+                .placeNearTarget()
+                .text("When locomotive reaches a waypoint, it is marked as visited, this resets once all waypoints the route are reached");
+
+        scene.world.modifyEntity(thirdWaypoint, Entity::discard);
 
         scene.idle(5);
     }
 
     private static BlockState flipAutoRail(BlockState autorail){
-        return autorail.setValue(SwitchRail.POWERED, true);
+        return autorail.setValue(SwitchRail.POWERED, !autorail.getValue(SwitchRail.POWERED));
     }
 }

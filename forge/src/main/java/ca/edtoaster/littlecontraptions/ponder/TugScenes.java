@@ -80,7 +80,7 @@ public class TugScenes {
         scene.idle(70);
 
         ElementLink<VehicleElement<SteamTugEntity>> steamTug =
-                bargeInst.createVessel(util.vector.topOf(steamTugInitialPosition), 270.0F, SteamTugEntity::new);
+                bargeInst.createVehicle(util.vector.topOf(steamTugInitialPosition), 270.0F, SteamTugEntity::new);
 
         scene.idle(20);
         scene.addKeyframe();
@@ -129,9 +129,9 @@ public class TugScenes {
         scene.idle(45);
 
         // Start moving tugboat
-        bargeInst.moveVessel(steamTug, new Vec3(-2, 0, 0), 25);
+        bargeInst.moveVehicle(steamTug, new Vec3(-2, 0, 0), 25);
         scene.idle(15);
-        bargeInst.rotateVessel(steamTug, -35, 10);
+        bargeInst.rotateVehicle(steamTug, -35, 10);
         scene.idle(25);
 
         scene.addKeyframe();
@@ -162,7 +162,7 @@ public class TugScenes {
         scene.idle(36);
         scene.overlay.showControls((new InputWindowElement(turnPosition.add(.5, 1, -.5), Pointing.DOWN))
                 .rightClick()
-                .whileSneaking(), 35);
+                .withItem(stackOf(ModItems.CONDUCTORS_WRENCH.get())), 35);
         scene.idle(35);
         scene.world.replaceBlocks(util.select.position(guideRailPos), guideRailRight, false);
 
@@ -171,11 +171,11 @@ public class TugScenes {
         scene.addKeyframe();
 
         // Continue!
-        bargeInst.moveVessel(steamTug, new Vec3(-1, 0, -1), 10);
-        bargeInst.rotateVessel(steamTug, -55, 10);
+        bargeInst.moveVehicle(steamTug, new Vec3(-1, 0, -1), 10);
+        bargeInst.rotateVehicle(steamTug, -55, 10);
         scene.idle(10);
 
-        bargeInst.moveVessel(steamTug, new Vec3(0, 0, -3), 36);
+        bargeInst.moveVehicle(steamTug, new Vec3(0, 0, -3), 36);
         scene.idle(36);
         scene.world.modifyEntity(itemEntity, Entity::discard);
 
@@ -269,15 +269,15 @@ public class TugScenes {
 
         // Spawn vessels
         ElementLink<VehicleElement<EnergyTugEntity>> tug =
-                bargeInst.createVessel(util.vector.of(4.5,1,3.5), 270.0F, EnergyTugEntity::new);
+                bargeInst.createVehicle(util.vector.of(4.5,1,3.5), 270.0F, EnergyTugEntity::new);
         ElementLink<VehicleElement<FishingBargeEntity>> chest1 =
-                bargeInst.createVessel(util.vector.of(5.5,1,3.5), 270.0F, FishingBargeEntity::new);
+                bargeInst.createVehicle(util.vector.of(5.5,1,3.5), 270.0F, FishingBargeEntity::new);
         ElementLink<VehicleElement<ChestBargeEntity>> chest2 =
-                bargeInst.createVessel(util.vector.of(6.5,1,3.5), 270.0F, ChestBargeEntity::new);
+                bargeInst.createVehicle(util.vector.of(6.5,1,3.5), 270.0F, ChestBargeEntity::new);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(80);
 
@@ -288,9 +288,9 @@ public class TugScenes {
 
         scene.idle(100);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(5);
 

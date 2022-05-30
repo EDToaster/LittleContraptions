@@ -40,12 +40,12 @@ public class AssemblerScenes {
 
         // Spawn barge
         ElementLink<VehicleElement<ContraptionBargeEntity>> barge =
-                bargeInst.createVessel(util.vector.topOf(2, 0, 4), 90.0F, ContraptionBargeEntity::new);
+                bargeInst.createVehicle(util.vector.topOf(2, 0, 4), 90.0F, ContraptionBargeEntity::new);
         scene.world.showSection(util.select.position(assemblerPos.above()), Direction.DOWN);
         scene.idle(10);
 
         // Move barge to assembler
-        bargeInst.moveVessel(barge, util.vector.of(0.0D, 0.0D, -2.0D), 20);
+        bargeInst.moveVehicle(barge, util.vector.of(0.0D, 0.0D, -2.0D), 20);
         scene.idle(20);
         ElementLink<WorldSectionElement> plank = scene.world.makeSectionIndependent(util.select.position(assemblerPos.above()));
         scene.effects.indicateSuccess(assemblerPos);
@@ -53,7 +53,7 @@ public class AssemblerScenes {
 
         // Move barge and block to end
         scene.world.moveSection(plank, util.vector.of(0.0D, 0.0D, -2.0D), 20);
-        bargeInst.moveVessel(barge, util.vector.of(0.0D, 0.0D, -2.0D), 20);
+        bargeInst.moveVehicle(barge, util.vector.of(0.0D, 0.0D, -2.0D), 20);
         scene.idle(20);
         scene.world.toggleRedstonePower(assemblySection);
         scene.idle(10);
@@ -62,19 +62,19 @@ public class AssemblerScenes {
 
         // Rotate barge and block
         scene.world.rotateSection(plank, 0.0D, 180.0D, 0.0D, 6);
-        bargeInst.rotateVessel(barge, 180.0f, 6);
+        bargeInst.rotateVehicle(barge, 180.0f, 6);
         scene.idle(3);
 
         // Move barge and block back to assembler
         scene.world.moveSection(plank, util.vector.of(0.0D, 0.0D, 2.0D), 20);
-        bargeInst.moveVessel(barge, util.vector.of(0.0D, 0.0D, 2.0D), 20);
+        bargeInst.moveVehicle(barge, util.vector.of(0.0D, 0.0D, 2.0D), 20);
         scene.idle(20);
 
         // Move barge to beginning
-        bargeInst.moveVessel(barge, util.vector.of(0.0D, 0.0D, 2.0D), 20);
+        bargeInst.moveVehicle(barge, util.vector.of(0.0D, 0.0D, 2.0D), 20);
         scene.idle(30);
         scene.world.destroyBlock(assemblerPos.above());
-        bargeInst.rotateVessel(barge, 180.0f, 6);
+        bargeInst.rotateVehicle(barge, 180.0f, 6);
         scene.idle(10);
 
         scene.addKeyframe();
@@ -99,23 +99,23 @@ public class AssemblerScenes {
         scene.idle(10);
 
         // Move barge to assembler
-        bargeInst.moveVessel(barge, new Vec3(0, 0, -2), 20);
+        bargeInst.moveVehicle(barge, new Vec3(0, 0, -2), 20);
         scene.idle(20);
 
         // Move everything to end
         scene.effects.indicateSuccess(assemblerPos);
-        bargeInst.moveVessel(barge, new Vec3(0, 0, -2), 20);
+        bargeInst.moveVehicle(barge, new Vec3(0, 0, -2), 20);
         scene.world.moveSection(contraption, new Vec3(0, 0, -2), 20);
         scene.world.setKineticSpeed(drillPos, 20);
         scene.idle(40);
 
         // Rotate
-        bargeInst.rotateVessel(barge, 180.0f, 16);
+        bargeInst.rotateVehicle(barge, 180.0f, 16);
         scene.world.rotateSection(contraption, 0.0D, 180.0D, 0.0D, 16);
         scene.idle(16);
 
         // Move everything to start
-        bargeInst.moveVessel(barge, new Vec3(0, 0, 4), 40);
+        bargeInst.moveVehicle(barge, new Vec3(0, 0, 4), 40);
         scene.world.moveSection(contraption, new Vec3(0, 0, 4), 40);
         scene.idle(40);
 
