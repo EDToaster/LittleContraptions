@@ -1,7 +1,7 @@
 package ca.edtoaster.littlecontraptions.ponder;
 
-import ca.edtoaster.littlecontraptions.ponder.element.BargeInstructions;
-import ca.edtoaster.littlecontraptions.ponder.element.VesselElement;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleInstructions;
+import ca.edtoaster.littlecontraptions.ponder.element.VehicleElement;
 import com.simibubi.create.foundation.ponder.ElementLink;
 import com.simibubi.create.foundation.ponder.SceneBuilder;
 import com.simibubi.create.foundation.ponder.SceneBuildingUtil;
@@ -36,7 +36,7 @@ public class TugScenes {
     }
 
     public static void basicTugScene(SceneBuilder scene, SceneBuildingUtil util) {
-        BargeInstructions bargeInst = new BargeInstructions(scene);
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
 
         // Setup Scene
         scene.title("basic_tug", "Just the basics about tugs");
@@ -79,8 +79,8 @@ public class TugScenes {
                 .withItem(stackOf(ModItems.STEAM_TUG.get())), 50);
         scene.idle(70);
 
-        ElementLink<VesselElement<SteamTugEntity>> steamTug =
-                bargeInst.createVessel(util.vector.topOf(steamTugInitialPosition), 270.0F, SteamTugEntity::new);
+        ElementLink<VehicleElement<SteamTugEntity>> steamTug =
+                bargeInst.createVehicle(util.vector.topOf(steamTugInitialPosition), 270.0F, SteamTugEntity::new);
 
         scene.idle(20);
         scene.addKeyframe();
@@ -129,9 +129,9 @@ public class TugScenes {
         scene.idle(45);
 
         // Start moving tugboat
-        bargeInst.moveVessel(steamTug, new Vec3(-2, 0, 0), 25);
+        bargeInst.moveVehicle(steamTug, new Vec3(-2, 0, 0), 25);
         scene.idle(15);
-        bargeInst.rotateVessel(steamTug, -35, 10);
+        bargeInst.rotateVehicle(steamTug, -35, 10);
         scene.idle(25);
 
         scene.addKeyframe();
@@ -162,7 +162,7 @@ public class TugScenes {
         scene.idle(36);
         scene.overlay.showControls((new InputWindowElement(turnPosition.add(.5, 1, -.5), Pointing.DOWN))
                 .rightClick()
-                .whileSneaking(), 35);
+                .withItem(stackOf(ModItems.CONDUCTORS_WRENCH.get())), 35);
         scene.idle(35);
         scene.world.replaceBlocks(util.select.position(guideRailPos), guideRailRight, false);
 
@@ -171,18 +171,18 @@ public class TugScenes {
         scene.addKeyframe();
 
         // Continue!
-        bargeInst.moveVessel(steamTug, new Vec3(-1, 0, -1), 10);
-        bargeInst.rotateVessel(steamTug, -55, 10);
+        bargeInst.moveVehicle(steamTug, new Vec3(-1, 0, -1), 10);
+        bargeInst.rotateVehicle(steamTug, -55, 10);
         scene.idle(10);
 
-        bargeInst.moveVessel(steamTug, new Vec3(0, 0, -3), 36);
+        bargeInst.moveVehicle(steamTug, new Vec3(0, 0, -3), 36);
         scene.idle(36);
         scene.world.modifyEntity(itemEntity, Entity::discard);
 
     }
 
     public static void dockingScene(SceneBuilder scene, SceneBuildingUtil util) {
-        BargeInstructions bargeInst = new BargeInstructions(scene);
+        VehicleInstructions bargeInst = new VehicleInstructions(scene);
 
         // Setup Scene
         scene.title("tug_dock", "Docking the tug");
@@ -203,14 +203,16 @@ public class TugScenes {
                 .placeNearTarget()
                 .text("Every docking station needs to have one tug dock block and a direct line of barge docks blocks.");
 
-        scene.idle(110);
+        scene.idle(120);
 
         scene.overlay.showText(100)
                 .pointAt(util.vector.topOf(of(4, 0, 4)))
                 .placeNearTarget()
                 .text("Barge docks can be switched from blue (wait for unloading) to orange (wait for loading) using conductor's wrench.");
 
-        scene.idle(120);
+        scene.idle(130);
+
+        scene.addKeyframe();
 
         scene.overlay.showControls((new InputWindowElement(util.vector.topOf(of(4, 0, 4)), Pointing.DOWN))
                 .rightClick()
@@ -243,6 +245,8 @@ public class TugScenes {
 
         scene.idle(100);
 
+        scene.addKeyframe();
+
         // add the rest of the surface
 
         scene.world.showSection(util.select.fromTo(0, 0, 0, 6, 0, 2), Direction.UP);
@@ -264,16 +268,16 @@ public class TugScenes {
         }
 
         // Spawn vessels
-        ElementLink<VesselElement<EnergyTugEntity>> tug =
-                bargeInst.createVessel(util.vector.of(4.5,1,3.5), 270.0F, EnergyTugEntity::new);
-        ElementLink<VesselElement<FishingBargeEntity>> chest1 =
-                bargeInst.createVessel(util.vector.of(5.5,1,3.5), 270.0F, FishingBargeEntity::new);
-        ElementLink<VesselElement<ChestBargeEntity>> chest2 =
-                bargeInst.createVessel(util.vector.of(6.5,1,3.5), 270.0F, ChestBargeEntity::new);
+        ElementLink<VehicleElement<EnergyTugEntity>> tug =
+                bargeInst.createVehicle(util.vector.of(4.5,1,3.5), 270.0F, EnergyTugEntity::new);
+        ElementLink<VehicleElement<FishingBargeEntity>> chest1 =
+                bargeInst.createVehicle(util.vector.of(5.5,1,3.5), 270.0F, FishingBargeEntity::new);
+        ElementLink<VehicleElement<ChestBargeEntity>> chest2 =
+                bargeInst.createVehicle(util.vector.of(6.5,1,3.5), 270.0F, ChestBargeEntity::new);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(80);
 
@@ -284,9 +288,9 @@ public class TugScenes {
 
         scene.idle(100);
 
-        bargeInst.moveVessel(tug, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest1, util.vector.of(-2, 0, 0), 50);
-        bargeInst.moveVessel(chest2, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);
+        bargeInst.moveVehicle(chest2, util.vector.of(-2, 0, 0), 50);
 
         scene.idle(5);
 
