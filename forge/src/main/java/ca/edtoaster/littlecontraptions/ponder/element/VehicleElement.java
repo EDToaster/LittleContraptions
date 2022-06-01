@@ -6,8 +6,6 @@ import com.simibubi.create.foundation.ponder.PonderScene;
 import com.simibubi.create.foundation.ponder.PonderWorld;
 import com.simibubi.create.foundation.ponder.element.AnimatedSceneElement;
 import com.simibubi.create.foundation.utility.animation.LerpedFloat;
-import dev.murad.shipping.entity.custom.VesselEntity;
-import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
@@ -16,7 +14,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.lang.reflect.ParameterizedType;
 
 public class VehicleElement<T extends Entity> extends AnimatedSceneElement {
     private Vec3 location;

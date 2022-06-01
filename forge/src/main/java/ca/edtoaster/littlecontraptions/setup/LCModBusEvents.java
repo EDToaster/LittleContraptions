@@ -1,7 +1,7 @@
 package ca.edtoaster.littlecontraptions.setup;
 
 import ca.edtoaster.littlecontraptions.LCMod;
-import dev.murad.shipping.entity.custom.VesselEntity;
+import dev.murad.shipping.entity.custom.vessel.VesselEntity;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

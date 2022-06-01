@@ -4,7 +4,7 @@ import com.simibubi.create.content.contraptions.components.structureMovement.tra
 import com.simibubi.create.content.contraptions.components.structureMovement.train.capability.MinecartController;
 import ca.edtoaster.littlecontraptions.setup.LCEntityTypes;
 import ca.edtoaster.littlecontraptions.setup.LCItems;
-import dev.murad.shipping.entity.custom.barge.AbstractBargeEntity;
+import dev.murad.shipping.entity.custom.vessel.barge.AbstractBargeEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
