@@ -1,7 +1,7 @@
 package ca.edtoaster.littlecontraptions.setup;
 
 import ca.edtoaster.littlecontraptions.LCMod;
-import com.simibubi.create.repack.registrate.util.OneTimeEventReceiver;
+import com.tterrag.registrate.util.OneTimeEventReceiver;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import net.minecraft.world.item.BlockItem;
