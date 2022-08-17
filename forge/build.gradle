@@ -47,7 +47,8 @@ dependencies {
 
     modApi "dev.murad.littlelogistics:littlelogistics:${rootProject.ll_version}"
     modApi "com.jozufozu.flywheel:Flywheel-Forge:${rootProject.flywheel_version}"
-    modApi "com.simibubi.create:Create:${rootProject.create_version}"
+    modApi "com.tterrag.registrate:Registrate:${registrate_version}"
+    modApi ("curse.maven:create-${forge_create_project_id}:${forge_create_version}") { transitive = false }
 }
 
 processResources {
@@ -116,6 +117,8 @@ publishing {
         }
     }
     repositories {
+
+
         maven {
             url "file:///${project.projectDir}/mcmodsrepo"
         }
@@ -139,5 +142,7 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
+
+
     }
 }
