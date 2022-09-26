@@ -1,13 +1,13 @@
 package ca.edtoaster.littlecontraptions.item;
 
 import ca.edtoaster.littlecontraptions.entity.ContraptionBargeEntity;
-import dev.murad.shipping.item.AbstractEntityAddItem;
+import dev.murad.shipping.item.VesselItem;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 
 // TODO: Refactor Item in LL to reduce class bloat
-public class ContraptionBargeItem  extends AbstractEntityAddItem {
+public class ContraptionBargeItem  extends VesselItem {
     public ContraptionBargeItem(Properties p_i48526_2_) {
         super(p_i48526_2_);
     }

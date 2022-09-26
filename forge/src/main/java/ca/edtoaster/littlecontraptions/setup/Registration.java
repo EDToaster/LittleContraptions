@@ -114,7 +114,7 @@ public class Registration {
     public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = create(ForgeRegistries.BLOCK_ENTITIES);
 
-    private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
+    private static<T> DeferredRegister<T> create(IForgeRegistry<T> registry) {
         return DeferredRegister.create(registry, LCMod.MOD_ID);
     }
 
