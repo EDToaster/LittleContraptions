@@ -4,8 +4,15 @@ import ca.edtoaster.littlecontraptions.entity.ContraptionBargeEntity;
 
 import com.mojang.datafixers.util.Function4;
 
+import dev.murad.shipping.entity.custom.vessel.barge.AbstractBargeEntity;
+import dev.murad.shipping.entity.custom.vessel.barge.SeaterBargeEntity;
 import dev.murad.shipping.item.VesselItem;
+import dev.murad.shipping.setup.ModEntityTypes;
+import dev.murad.shipping.setup.ModItems;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 
@@ -14,25 +21,25 @@ import java.util.Optional;
 
 
 // TODO: Refactor Item in LL to reduce class bloat
-public class ContraptionBargeItem  extends VesselItem {
+public class ContraptionBargeItem  extends AbstractBargeEntity {
 
-    private final Function4<Level, Double, Double, Double, Entity> addEntity;
-    private Optional<String> tooltipLocation = Optional.empty();
-
-
-    public ContraptionBargeItem(Properties p_i48526_2_,Function4<Level, Double, Double, Double, Entity> addEntity, String tooltip) {
-        super(p_i48526_2_);
-        this.addEntity = addEntity;
-        this.tooltipLocation = Optional.of(tooltip);
+    public ContraptionBargeItem(EntityType<? extends SeaterBargeEntity> type, Level world) {
+        super(type, world);
     }
 
-    public ContraptionBargeItem(Properties p_i48526_2_, Function4<Level, Double, Double, Double, Entity> addEntity) {
-        super( p_i48526_2_);
-        this.addEntity = addEntity;
+    public ContraptionBargeItem(Level worldIn, double x, double y, double z) {
+        super(ModEntityTypes.SEATER_BARGE.get(), worldIn, x, y, z);
     }
 
     @Override
-    protected Entity getEntity(Level level, BlockHitResult raytraceresult) {
-        return new ContraptionBargeEntity(level, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+    public Item getDropItem() {
+        return ModItems.SEATER_BARGE.get();
     }
+
+    @Override
+    protected void doInteract(Player player) {
+
+    }
+
+
 }
