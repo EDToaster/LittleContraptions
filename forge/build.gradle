@@ -46,7 +46,7 @@ dependencies {
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     modApi "dev.murad.littlelogistics:littlelogistics:${rootProject.ll_version}"
-    modApi "com.jozufozu.flywheel:flywheel-forge-1.19.2:0.6.6-6:"
+    modApi "com.jozufozu.flywheel:${rootProject.flywheel_version}"
     modApi "com.tterrag.registrate:Registrate:${registrate_version}"
     modApi ("curse.maven:create-${forge_create_project_id}:${forge_create_version}") { transitive = false }
 }
