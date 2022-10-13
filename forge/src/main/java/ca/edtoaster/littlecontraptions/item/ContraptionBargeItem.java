@@ -2,6 +2,7 @@ package ca.edtoaster.littlecontraptions.item;
 
 import ca.edtoaster.littlecontraptions.entity.ContraptionBargeEntity;
 
+import ca.edtoaster.littlecontraptions.setup.LCItems;
 import com.mojang.datafixers.util.Function4;
 
 import dev.murad.shipping.entity.custom.vessel.barge.AbstractBargeEntity;
@@ -23,23 +24,18 @@ import java.util.Optional;
 // TODO: Refactor Item in LL to reduce class bloat
 public class ContraptionBargeItem  extends AbstractBargeEntity {
 
-    public ContraptionBargeItem(EntityType<? extends SeaterBargeEntity> type, Level world) {
+    public ContraptionBargeItem(EntityType<? extends AbstractBargeEntity> type, Level world) {
         super(type, world);
-    }
-
-    public ContraptionBargeItem(Level worldIn, double x, double y, double z) {
-        super(ModEntityTypes.SEATER_BARGE.get(), worldIn, x, y, z);
     }
 
     @Override
     public Item getDropItem() {
-        return ModItems.SEATER_BARGE.get();
+        return LCItems.CONTRAPTION_BARGE_ITEM.get();
     }
 
     @Override
     protected void doInteract(Player player) {
 
     }
-
 
 }
