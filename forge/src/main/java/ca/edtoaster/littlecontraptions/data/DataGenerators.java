@@ -5,9 +5,9 @@ import ca.edtoaster.littlecontraptions.data.client.ModBlockStateProvider;
 import ca.edtoaster.littlecontraptions.data.client.ModItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 
 @Mod.EventBusSubscriber(modid = LCMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
@@ -18,14 +18,14 @@ public final class DataGenerators {
         DataGenerator gen = gatherDataEvent.getGenerator();
         ExistingFileHelper existingFileHelper = gatherDataEvent.getExistingFileHelper();
 
-        gen.addProvider(new ModBlockStateProvider(gen, existingFileHelper));
-        gen.addProvider(new ModItemModelProvider(gen, existingFileHelper));
+        gen.addProvider(true, new ModBlockStateProvider(gen, existingFileHelper));
+        gen.addProvider(true, new ModItemModelProvider(gen, existingFileHelper));
 
         ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(gen, existingFileHelper);
-        gen.addProvider(modBlockTagsProvider);
-        gen.addProvider(new ModItemTagsProvider(gen, modBlockTagsProvider, existingFileHelper));
-        gen.addProvider(new ModLootTableProvider(gen));
-        gen.addProvider(new ModRecipeProvider(gen));
+        gen.addProvider(true, modBlockTagsProvider);
+        gen.addProvider(true, new ModItemTagsProvider(gen, modBlockTagsProvider, existingFileHelper));
+        gen.addProvider(true, new ModLootTableProvider(gen));
+        gen.addProvider(true, new ModRecipeProvider(gen));
     }
 
 }
