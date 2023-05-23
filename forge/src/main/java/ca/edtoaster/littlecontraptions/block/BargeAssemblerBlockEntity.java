@@ -3,15 +3,19 @@ package ca.edtoaster.littlecontraptions.block;
 import ca.edtoaster.littlecontraptions.entity.ContraptionBargeEntity;
 import ca.edtoaster.littlecontraptions.setup.LCBlockEntityTypes;
 import ca.edtoaster.littlecontraptions.setup.LCBlocks;
-import com.simibubi.create.content.contraptions.components.structureMovement.AssemblyException;
-import com.simibubi.create.content.contraptions.components.structureMovement.OrientedContraptionEntity;
-import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
-import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerTileEntity;
-import com.simibubi.create.content.contraptions.components.structureMovement.mounted.MountedContraption;
-import com.simibubi.create.foundation.tileEntity.SmartTileEntity;
-import com.simibubi.create.foundation.tileEntity.TileEntityBehaviour;
-import com.simibubi.create.foundation.tileEntity.behaviour.CenteredSideValueBoxTransform;
-import com.simibubi.create.foundation.tileEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.content.contraptions.IDisplayAssemblyExceptions;
+import com.simibubi.create.content.contraptions.AssemblyException;
+import com.simibubi.create.content.contraptions.OrientedContraptionEntity;
+import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlock;
+import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlockEntity;
+import com.simibubi.create.content.contraptions.mounted.MountedContraption;
+import com.simibubi.create.foundation.advancement.AllAdvancements;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
+import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollOptionBehaviour;
+import com.simibubi.create.foundation.utility.Lang;
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,7 +29,7 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class BargeAssemblerBlockEntity extends SmartTileEntity {
+public class BargeAssemblerBlockEntity extends SmartBlockEntity implements IDisplayAssemblyExceptions {
     private static final int assemblyCooldown = 8;
 
     // TODO: this isn't set on reload
@@ -82,7 +86,7 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
                 .isEmpty())
             return;
 
-        CartAssemblerTileEntity.CartMovementMode mode = CartAssemblerTileEntity.CartMovementMode.ROTATE;
+        CartAssemblerBlockEntity.CartMovementMode mode = CartAssemblerBlockEntity.CartMovementMode.ROTATE;
 
         MountedContraption contraption = new MountedContraption(mode);
         try {
@@ -172,11 +176,17 @@ public class BargeAssemblerBlockEntity extends SmartTileEntity {
         return new BargeAssemblerValueBoxTransform();
     }
 
+
     @Override
-    public void addBehaviours(List<TileEntityBehaviour> behaviours) {
-//        movementMode = new ScrollOptionBehaviour<>(CartAssemblerTileEntity.CartMovementMode.class,
-//                Lang.translate("contraptions.cart_movement_mode"), this, getMovementModeSlot());
-//        movementMode.requiresWrench();
-//        behaviours.add(movementMode);
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+        //movementMode = new ScrollOptionBehaviour<>(CartAssemblerBlockEntity.CartMovementMode.class,
+        //        Lang.translateDirect("contraptions.cart_movement_mode"), this, getMovementModeSlot());
+        //behaviours.add(movementMode);
+        //registerAwardables(behaviours, AllAdvancements.CONTRAPTION_ACTORS);
+    }
+
+    @Override
+    public AssemblyException getLastAssemblyException() {
+        return lastException;
     }
 }

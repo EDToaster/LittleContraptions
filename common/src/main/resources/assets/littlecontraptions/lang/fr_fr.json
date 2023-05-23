@@ -1,0 +1,46 @@
+{
+  "entity.littlecontraptions.contraption_barge": "Machine sur Barge",
+  "item.littlecontraptions.contraption_barge": "Machine sur Barge",
+  "block.littlecontraptions.barge_assembler": "Assembleur à Barge",
+
+  "littlecontraptions.ponder.tag.tugs": "Remorqueurs de Little Logistics",
+  "littlecontraptions.ponder.tag.tugs.description": "Des train suivants de Itinéraires, mais sur l'eau!",
+
+  "littlecontraptions.ponder.tag.trains": "Locomotives de Little Logistics",
+  "littlecontraptions.ponder.tag.trains.description": "Des Locomotives petites mais intelligentes!",
+
+  "littlecontraptions.ponder.basic_assembler.header": "Déplacer des structures en utilisant un assembleur à Barge",
+  "littlecontraptions.ponder.basic_assembler.text_1": "Les Assembleur à Barge alimentés par de la redstone montent les strucutres attachés au Machine sur Barge passant dedans",
+  "littlecontraptions.ponder.basic_assembler.text_2": "Sans signal de redstone, il retransforme les structures montés sur des Machines sur Barges en Blocs",
+  "littlecontraptions.ponder.basic_assembler.text_3": "Comme pour les Machines sur Wagonnets, vous pouvez attacher de plus grande structures avec des Châsis et de la Colle Extra-forte",
+
+  "littlecontraptions.ponder.basic_tug.header": "Les bases des Remorqueurs",
+  "littlecontraptions.ponder.basic_tug.text_1": "Les Remorqueurs peuvent êtres placés nimporte où sur l'eau",
+  "littlecontraptions.ponder.basic_tug.text_2": "Les Remorqueurs vont naturellement essayer d'aller vers les points d'un itinéraire de Remorqueur",
+  "littlecontraptions.ponder.basic_tug.text_3": "Mettre un itinéraire de Remorqueur dans un Remorqueur le fera démarrer son voyage!",
+  "littlecontraptions.ponder.basic_tug.text_4": "Il est possible que les remorqueurs se coincent sur des coins. Pour éviter cela utilisez un Guide d'ammarage de remorqueur",
+  "littlecontraptions.ponder.basic_tug.text_5": "Si le Guide d'ammarage de remorqueur est dans le mauvais sens; utilisez une clé à Molette de conducteur pour le tourner",
+
+  "littlecontraptions.ponder.tug_dock.header": "Amarrer le Remorqueur",
+  "littlecontraptions.ponder.tug_dock.text_1": "Des quai de Remorqueur peuvent êtres utilisés pour stopper un remorqueur automatiquement quand il charge ou décharge des ressources",
+  "littlecontraptions.ponder.tug_dock.text_2": "Toutes les stations de Remorqueur doivent avoir un quai de Remorqueur et une ligne droite de blocs de quais de Barges",
+  "littlecontraptions.ponder.tug_dock.text_3": "Les quais de Barges peuves êtres changés de bleu (en attente de déchargement) à orange (en attente de chagement) en utilisant une clé à Molette de conducteur",
+  "littlecontraptions.ponder.tug_dock.text_4": "Pour mettre des ressources dans une Barge, mettez un entonnoir au dessus du bloc de quai de Barge",
+  "littlecontraptions.ponder.tug_dock.text_5": "Pour vider une Barge, mettez un entonnoir sous le bloc d'eau sur lequel est la Barge",
+  "littlecontraptions.ponder.tug_dock.text_6": "Le remorqueur attendra automatiquement que les barges soient terminés d'êtres vidées ou remplies",
+
+  "littlecontraptions.ponder.loco_dock.header": "Arreter une Locomotive",
+  "littlecontraptions.ponder.loco_dock.text_1": "Des rails d'Arrêt de Locomotive permettent d'arreter une locomotive automatiquement quand il charge ou décharge des ressources depuis des wagonnets",
+  "littlecontraptions.ponder.loco_dock.text_2": "Chaque arrêt de Locomotive a besoin d'un rail d'Arrêt de Locomotive et d'un ligne droite de Rail d'Arrêt de Wagonnet",
+  "littlecontraptions.ponder.loco_dock.text_3": "Les Rail d'Arrêt de Wagonnet peuves êtres changés de bleu (en attente de déchargement) à orange (en attente de chagement) en utilisant une clé à Molette de conducteur",
+  "littlecontraptions.ponder.loco_dock.text_4": "Pour mettre des ressources dans un train, mettez un entonnoir vers un rail",
+  "littlecontraptions.ponder.loco_dock.text_5": "Pour vider un Train, mettez un entonnoir sous un rail",
+  "littlecontraptions.ponder.loco_dock.text_6": "La Locomotive attendra automatiquement que les wagonnets soient terminés d'êtres vidées ou remplies",
+
+  "littlecontraptions.ponder.loco_route.header": "Itinéraires à Locomotives",
+  "littlecontraptions.ponder.loco_route.text_1": "Les Aiguillage Automatique vous permettent de faire des itinéraires qui partagent de longues sections de rails",
+  "littlecontraptions.ponder.loco_route.text_2": "Les Itinéraires sont définis en faisant clique Droit avec un Itinéraire de Locomotive",
+  "littlecontraptions.ponder.loco_route.text_3": "La Locomotive changera les aiguillages automatiques par elle-même, se dirigeant vers les points définis sur l'itinéraire",
+  "littlecontraptions.ponder.loco_route.text_4": "Si il y a deux points sur un itinéraire, la locomotive ira vers le point le plus proche qui n'a pas encore été visité",
+  "littlecontraptions.ponder.loco_route.text_5": "Quand la Locomotive atteint un point, il est marqué comme visité, ceci s'annule quand tout les points de l'itinéraire on été visités"
+}
