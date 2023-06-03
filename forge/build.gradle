@@ -48,7 +48,7 @@ dependencies {
     modApi "dev.murad.littlelogistics:littlelogistics:${rootProject.ll_version}"
     modApi "com.jozufozu.flywheel:${rootProject.flywheel_version}"
     modApi "com.tterrag.registrate:Registrate:${registrate_version}"
-    modApi ("curse.maven:create-${forge_create_project_id}:${forge_create_version}") { transitive = false }
+    modApi ("curse.maven:create-${curseforge_create_project_id}:${curseforge_create_version}") { transitive = false }
 }
 
 processResources {
@@ -72,8 +72,9 @@ processResources {
                 "forge_version_range":      project.forge_version_range,
                 "patchouli_version_range":  project.patchouli_version_range,
                 "create_version_range":     project.create_version_range,
-                "ll_version_range":     project.ll_version_range
+                "ll_version_range":         project.ll_version_range
     }
+
     filesMatching("pack.mcmeta") {
         expand "mod_id": project.mod_id
     }
@@ -110,18 +111,16 @@ components.java {
 }
 
 publishing {
+
     publications {
         mavenForge(MavenPublication) {
             artifactId = rootProject.archivesBaseName + "-" + project.name
             from components.java
         }
     }
+
     repositories {
-
-
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
+        maven { url "file:///${project.projectDir}/mcmodsrepo" }
 
         maven {
             name = "edtoaster"
@@ -142,7 +141,5 @@ publishing {
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
-
-
     }
 }

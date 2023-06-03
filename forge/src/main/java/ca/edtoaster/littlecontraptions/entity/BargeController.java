@@ -1,6 +1,6 @@
 package ca.edtoaster.littlecontraptions.entity;
 
-import com.simibubi.create.content.contraptions.components.structureMovement.train.capability.MinecartController;
+import com.simibubi.create.content.contraptions.minecart.capability.MinecartController;
 import dev.murad.shipping.capability.StallingCapability;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.LazyOptional;
