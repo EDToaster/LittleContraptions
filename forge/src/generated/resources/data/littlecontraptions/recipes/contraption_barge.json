@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "ABA",
-    "$$$"
-  ],
   "key": {
-    "B": {
-      "item": "create:andesite_alloy"
+    "$": {
+      "item": "minecraft:iron_ingot"
     },
     "A": {
       "item": "create:brass_ingot"
     },
-    "$": {
-      "item": "minecraft:iron_ingot"
+    "B": {
+      "item": "create:andesite_alloy"
     }
   },
+  "pattern": [
+    "ABA",
+    "$$$"
+  ],
   "result": {
     "item": "littlecontraptions:contraption_barge"
   }
