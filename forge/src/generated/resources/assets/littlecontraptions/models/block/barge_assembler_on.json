@@ -3,8 +3,8 @@
   "textures": {
     "4": "littlecontraptions:block/barge_assembler_top",
     "6": "littlecontraptions:block/barge_assembler_side_on",
-    "rail": "littlecontraptions:block/blank",
     "particle": "littlecontraptions:block/barge_assembler_side",
+    "rail": "littlecontraptions:block/blank",
     "translation_chassis_side": "littlecontraptions:block/barge_assembler_side"
   }
 }
