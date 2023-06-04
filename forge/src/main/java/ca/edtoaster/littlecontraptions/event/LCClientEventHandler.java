@@ -17,11 +17,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = LCMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class LCClientEventHandler {
 
+    @SuppressWarnings("removal")
     @SubscribeEvent
     public static void onRenderTypeSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(LCBlocks.BARGE_ASSEMBLER.get(), RenderType.cutoutMipped());
-        });
+        event.enqueueWork(() -> ItemBlockRenderTypes.setRenderLayer(LCBlocks.BARGE_ASSEMBLER.get(), RenderType.cutoutMipped()));
     }
 
     @SubscribeEvent
