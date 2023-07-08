@@ -2,8 +2,8 @@ package ca.edtoaster.littlecontraptions.block;
 
 
 import ca.edtoaster.littlecontraptions.setup.LCBlockEntityTypes;
-import com.simibubi.create.content.contraptions.components.structureMovement.mounted.CartAssemblerBlock;
-import com.simibubi.create.content.contraptions.wrench.IWrenchable;
+import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlock;
+import com.simibubi.create.content.equipment.wrench.IWrenchable;
 import dev.murad.shipping.entity.custom.vessel.VesselEntity;
 import dev.murad.shipping.util.TickerUtil;
 import net.minecraft.core.BlockPos;
