@@ -1,9 +1,9 @@
 package ca.edtoaster.littlecontraptions.entity;
 
-import com.simibubi.create.content.contraptions.components.structureMovement.train.capability.CapabilityMinecartController;
-import com.simibubi.create.content.contraptions.components.structureMovement.train.capability.MinecartController;
 import ca.edtoaster.littlecontraptions.setup.LCEntityTypes;
 import ca.edtoaster.littlecontraptions.setup.LCItems;
+import com.simibubi.create.content.contraptions.minecart.capability.CapabilityMinecartController;
+import com.simibubi.create.content.contraptions.minecart.capability.MinecartController;
 import dev.murad.shipping.entity.custom.vessel.barge.AbstractBargeEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
