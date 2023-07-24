@@ -9,6 +9,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.ponder.PonderRegistrationHelper;
 import com.simibubi.create.foundation.ponder.PonderRegistry;
 import com.simibubi.create.foundation.ponder.PonderTag;
+import com.simibubi.create.infrastructure.ponder.AllPonderTags;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.murad.shipping.setup.ModBlocks;
@@ -22,7 +23,7 @@ public class LCPonder {
     public static PonderTag LC_TUGS;
     public static PonderTag LC_LOCOS;
 
-    private static CreateRegistrate createRegistrate = CreateRegistrate.lazy(LCMod.MOD_ID).get();
+    private static final CreateRegistrate createRegistrate = CreateRegistrate.create(LCMod.MOD_ID);
 
     public static final BlockEntry<BargeAssemblerBlock> BARGE_ASSEMBLER_ENTRY = new BlockEntry<>(createRegistrate, LCBlocks.BARGE_ASSEMBLER);
     public static final BlockEntry<Block> CORNER_GUIDE_RAIL_BLOCK_BLOCK_ENTRY = new BlockEntry<>(createRegistrate, ModBlocks.GUIDE_RAIL_CORNER);
@@ -67,7 +68,7 @@ public class LCPonder {
         HELPER.forComponents(STEAM_LOCOMOTIVE_ENTRY, ENERGY_LOCOMOTIVE_ITEM_ENTRY, LOCO_ROUTE_ENTRY, AUTO_SWITCH, AUTO_TEE)
                 .addStoryBoard("loco_route", LocomotiveScenes::routeScene);
 
-        PonderRegistry.TAGS.forTag(PonderTag.MOVEMENT_ANCHOR)
+        PonderRegistry.TAGS.forTag(AllPonderTags.MOVEMENT_ANCHOR)
                 .add(BARGE_ASSEMBLER_ENTRY);
 
         PonderRegistry.TAGS.forTag(LC_LOCOS)
