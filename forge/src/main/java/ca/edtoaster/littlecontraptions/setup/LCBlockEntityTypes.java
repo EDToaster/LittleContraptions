@@ -1,6 +1,7 @@
 package ca.edtoaster.littlecontraptions.setup;
 
 import ca.edtoaster.littlecontraptions.block.BargeAssemblerBlockEntity;
+import ca.edtoaster.littlecontraptions.block.FuseClutchEntity;
 import dev.murad.shipping.setup.Registration;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,6 +14,12 @@ public class LCBlockEntityTypes {
             "barge_assembler",
             BargeAssemblerBlockEntity::new,
             LCBlocks.BARGE_ASSEMBLER
+    );
+
+    public static final RegistryObject<BlockEntityType<FuseClutchEntity>> FUSE_CLUTCH = register(
+            "fuse_clutch",
+            FuseClutchEntity::new,
+            LCBlocks.FUSE_CLUTCH
     );
 
     private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(
