@@ -1,15 +1,20 @@
 package ca.edtoaster.littlecontraptions.event;
 
-import ca.edtoaster.littlecontraptions.entity.models.ContraptionBargeModel;
+import ca.edtoaster.littlecontraptions.LCMod;
 import ca.edtoaster.littlecontraptions.setup.LCBlocks;
 import ca.edtoaster.littlecontraptions.setup.LCEntityTypes;
-import ca.edtoaster.littlecontraptions.LCMod;
-import dev.murad.shipping.entity.render.barge.StaticVesselRenderer;
+import ca.edtoaster.littlecontraptions.setup.LCItems;
+import dev.murad.shipping.ShippingMod;
+import dev.murad.shipping.entity.models.insert.CubeInsertBargeModel;
+import dev.murad.shipping.entity.models.vessel.base.BaseBargeModel;
+import dev.murad.shipping.entity.models.vessel.base.TrimBargeModel;
+import dev.murad.shipping.entity.render.barge.MultipartVesselRenderer;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,12 +31,26 @@ public class LCClientEventHandler {
     @SubscribeEvent
     public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(LCEntityTypes.CONTRAPTION_BARGE.get(),
-                (ctx) -> new StaticVesselRenderer<>(ctx, ContraptionBargeModel::new, ContraptionBargeModel.LAYER_LOCATION,
-                        new ResourceLocation(LCMod.MOD_ID, "textures/entity/contraption_barge.png")));
+                (ctx) -> new MultipartVesselRenderer.Builder<>(ctx)
+                        .baseModel(BaseBargeModel::new, BaseBargeModel.CLOSED_LOCATION,
+                                ShippingMod.entityTexture("barge/base.png"))
+                        .insertModel(CubeInsertBargeModel::new, CubeInsertBargeModel.LAYER_LOCATION,
+                                new ResourceLocation(LCMod.MOD_ID, "textures/entity/contraption_barge.png"))
+                        .trimModel(TrimBargeModel::new, TrimBargeModel.CLOSED_LOCATION,
+                                ShippingMod.entityTexture("barge/trim.png"))
+                        .build());
     }
 
     @SubscribeEvent
     public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(ContraptionBargeModel.LAYER_LOCATION, ContraptionBargeModel::createBodyLayer);
+    }
+
+    /**
+     * Subscribe to event when building each creative mode tab. Items are added to tabs here.
+     * @param event The creative tab currently being built
+     */
+    @SubscribeEvent
+    public static void buildTabContents(BuildCreativeModeTabContentsEvent event) {
+        LCItems.buildTabContents(event);
     }
 }

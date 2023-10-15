@@ -2,7 +2,7 @@ package ca.edtoaster.littlecontraptions.data.client;
 
 
 import ca.edtoaster.littlecontraptions.LCMod;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -10,8 +10,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
-    public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, LCMod.MOD_ID, existingFileHelper);
+    public ModItemModelProvider(PackOutput out, ExistingFileHelper existingFileHelper) {
+        super(out, LCMod.MOD_ID, existingFileHelper);
     }
 
     @Override

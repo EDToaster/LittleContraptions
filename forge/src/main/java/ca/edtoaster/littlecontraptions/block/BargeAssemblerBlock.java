@@ -31,8 +31,8 @@ public class BargeAssemblerBlock extends Block implements EntityBlock, IWrenchab
     public static final Property<RailShape> RAIL_SHAPE = CartAssemblerBlock.RAIL_SHAPE;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public BargeAssemblerBlock(Properties p_49795_) {
-        super(p_49795_);
+    public BargeAssemblerBlock(Properties props) {
+        super(props);
     }
 
     @Nullable

@@ -3,8 +3,6 @@ package ca.edtoaster.littlecontraptions.data;
 import ca.edtoaster.littlecontraptions.LCMod;
 import ca.edtoaster.littlecontraptions.data.client.ModBlockStateProvider;
 import ca.edtoaster.littlecontraptions.data.client.ModItemModelProvider;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,17 +13,19 @@ public final class DataGenerators {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent gatherDataEvent){
-        DataGenerator gen = gatherDataEvent.getGenerator();
-        ExistingFileHelper existingFileHelper = gatherDataEvent.getExistingFileHelper();
+        var gen = gatherDataEvent.getGenerator();
+        var existingFileHelper = gatherDataEvent.getExistingFileHelper();
+        var pack = gen.getPackOutput();
+        var lookupProvider = gatherDataEvent.getLookupProvider();
 
-        gen.addProvider(true, new ModBlockStateProvider(gen, existingFileHelper));
-        gen.addProvider(true, new ModItemModelProvider(gen, existingFileHelper));
+        gen.addProvider(true, new ModBlockStateProvider(pack, existingFileHelper));
+        gen.addProvider(true, new ModItemModelProvider(pack, existingFileHelper));
 
-        ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(gen, existingFileHelper);
+        ModBlockTagsProvider modBlockTagsProvider = new ModBlockTagsProvider(pack, lookupProvider, existingFileHelper);
         gen.addProvider(true, modBlockTagsProvider);
-        gen.addProvider(true, new ModItemTagsProvider(gen, modBlockTagsProvider, existingFileHelper));
-        gen.addProvider(true, new ModLootTableProvider(gen));
-        gen.addProvider(true, new ModRecipeProvider(gen));
+        gen.addProvider(true, new ModItemTagsProvider(pack, lookupProvider, modBlockTagsProvider.contentsGetter(), existingFileHelper));
+        gen.addProvider(true, new ModLootTableProvider(pack));
+        gen.addProvider(true, new ModRecipeProvider(pack));
     }
 
 }

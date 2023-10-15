@@ -17,6 +17,7 @@ import dev.murad.shipping.entity.custom.train.wagon.ChestCarEntity;
 import dev.murad.shipping.item.LocoRouteItem;
 import dev.murad.shipping.item.TugRouteItem;
 import dev.murad.shipping.setup.ModBlocks;
+import dev.murad.shipping.setup.ModEntityTypes;
 import dev.murad.shipping.setup.ModItems;
 import dev.murad.shipping.util.LocoRoute;
 import dev.murad.shipping.util.LocoRouteNode;
@@ -139,9 +140,11 @@ public class LocomotiveScenes {
         ElementLink<VehicleElement<Entity>> tug =
                 bargeInst.createVehicle(util.vector.of(4.5,1.5,3.5), 270.0F, EnergyLocomotiveEntity::new);
         ElementLink<VehicleElement<Entity>> chest1 =
-                bargeInst.createVehicle(util.vector.of(5.5,1.5,3.5), 270.0F, ChestCarEntity::new);
+                bargeInst.createVehicle(util.vector.of(5.5,1.5,3.5), 270.0F, (lvl, x, y, z) ->
+                        new ChestCarEntity(ModEntityTypes.CHEST_CAR.get(), lvl, x, y, z));
         ElementLink<VehicleElement<Entity>> chest2 =
-                bargeInst.createVehicle(util.vector.of(6.5,1.5,3.5), 270.0F, ChestCarEntity::new);
+                bargeInst.createVehicle(util.vector.of(6.5,1.5,3.5), 270.0F, (lvl, x, y, z) ->
+                        new ChestCarEntity(ModEntityTypes.CHEST_CAR.get(), lvl, x, y, z));
 
         bargeInst.moveVehicle(tug, util.vector.of(-2, 0, 0), 50);
         bargeInst.moveVehicle(chest1, util.vector.of(-2, 0, 0), 50);

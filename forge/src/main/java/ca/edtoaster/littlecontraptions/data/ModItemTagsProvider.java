@@ -1,20 +1,26 @@
 package ca.edtoaster.littlecontraptions.data;
 
 import ca.edtoaster.littlecontraptions.LCMod;
-import net.minecraft.data.tags.BlockTagsProvider;
+import dev.murad.shipping.ShippingMod;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
 
-    public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagsProvider, LCMod.MOD_ID, existingFileHelper);
+    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, blockTagProvider, LCMod.MOD_ID, existingFileHelper);
     }
 
-    protected void addTags() {
+    @Override
+    protected void addTags(HolderLookup.@NotNull Provider lookupProvider) {
 
     }
 }

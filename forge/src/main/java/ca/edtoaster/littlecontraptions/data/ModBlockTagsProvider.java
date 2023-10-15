@@ -1,20 +1,20 @@
 package ca.edtoaster.littlecontraptions.data;
 
 import ca.edtoaster.littlecontraptions.LCMod;
-import net.minecraft.data.tags.BlockTagsProvider;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class ModBlockTagsProvider extends BlockTagsProvider {
-    public ModBlockTagsProvider(DataGenerator gen, ExistingFileHelper existingFileHelper) {
-        super(gen, LCMod.MOD_ID, existingFileHelper);
+    public ModBlockTagsProvider(PackOutput pack, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
+        super(pack, registries, LCMod.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
-
+    protected void addTags(HolderLookup.Provider lookupProvider) {
 
     }
-
-
 }

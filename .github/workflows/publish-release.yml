@@ -32,4 +32,5 @@ jobs:
           echo "Github username: ${GITHUB_ACTOR}"
           echo "maven.edtoaster.ca username: ${EDTOASTER_MAVEN_USER}"
           ./gradlew wrapper
+          ./gradlew runData
           ./gradlew -Pmod_version=${NEW_VERSION} publish

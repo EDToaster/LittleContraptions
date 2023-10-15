@@ -2,8 +2,10 @@ package ca.edtoaster.littlecontraptions.entity;
 
 import ca.edtoaster.littlecontraptions.setup.LCEntityTypes;
 import ca.edtoaster.littlecontraptions.setup.LCItems;
+import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.minecart.capability.CapabilityMinecartController;
 import com.simibubi.create.content.contraptions.minecart.capability.MinecartController;
+import com.simibubi.create.content.contraptions.render.ContraptionEntityRenderer;
 import dev.murad.shipping.entity.custom.vessel.barge.AbstractBargeEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -32,7 +34,7 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.level.isClientSide) {
+        if (this.level().isClientSide) {
             // back-calculate xo, yo, and zo on client side to provide smooth
             // rot to contraption entity
             Vec3 clientPos = position();
@@ -46,7 +48,7 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
     }
 
     @Override
-    protected boolean canAddPassenger(Entity p_184219_1_) {
+    protected boolean canAddPassenger(Entity passenger) {
         return this.getPassengers().size() < 1;
     }
 
@@ -60,9 +62,10 @@ public class ContraptionBargeEntity extends AbstractBargeEntity {
         // no op
     }
 
-    public void positionRider(Entity entity) {
-        if (this.hasPassenger(entity)) {
-            entity.setPos(getRiderPosition());
+    public void positionRider(Entity passenger, Entity.MoveFunction callback) {
+        if (this.hasPassenger(passenger)) {
+            var pos = getRiderPosition();
+            callback.accept(passenger, pos.x, pos.y, pos.z);
         }
     }
 

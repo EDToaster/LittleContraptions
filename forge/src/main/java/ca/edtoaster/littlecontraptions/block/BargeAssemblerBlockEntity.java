@@ -8,6 +8,7 @@ import com.simibubi.create.content.contraptions.OrientedContraptionEntity;
 import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlock;
 import com.simibubi.create.content.contraptions.mounted.CartAssemblerBlockEntity;
 import com.simibubi.create.content.contraptions.mounted.MountedContraption;
+import com.simibubi.create.foundation.advancement.AllAdvancements;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import com.simibubi.create.foundation.blockEntity.behaviour.CenteredSideValueBoxTransform;
@@ -108,6 +109,10 @@ public class BargeAssemblerBlockEntity extends SmartBlockEntity {
         entity.setPos(barge.getRiderPosition());
         world.addFreshEntity(entity);
         entity.startRiding(barge);
+
+        if (contraption.containsBlockBreakers()) {
+            this.award(AllAdvancements.CONTRAPTION_ACTORS);
+        }
     }
 
     protected void disassemble(Level world, BlockPos pos, ContraptionBargeEntity barge) {
